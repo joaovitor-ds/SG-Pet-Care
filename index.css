@@ -1,0 +1,41 @@
+/*-----Inicio NavBar-----*/
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 60.1px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        h3 {
+            text-align: left;
+        }
+        a:hover {
+            color: cyan;
+        }
+
+        button{
+            background-color: rgb(32, 113, 219);
+        }
+         /*------Final NavBar------*/
