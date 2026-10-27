@@ -1,0 +1,27 @@
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo da logo sem ser clicável */
+.logo {
+    width: 150px;       /* tamanho recomendado */
+    height: 150px;       /* mantém proporção */
+    margin-right: auto;
+    padding: 0;
+    cursor: default;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse */
+.logo:hover {
+    transform: scale(1.08); /* Aumenta levemente */
+}
+
+/* Links à direita */
+.menu-links a,
+.menu-links button {
+    margin-left: 5px;
+}

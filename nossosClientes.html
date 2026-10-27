@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/nossosClientes.css">
+    <link rel="stylesheet" href="Css/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Nossos Clientes</title>
+</head>
+<body>
+    <!-- NAVBAR -->
+<div class="w3-bar w3-light-grey w3-padding w3-large navbar">
+
+    <!-- Logo -->
+    <img class="w3-bar-item logo" src="Img/LogoSGPC.jpeg" alt="Logo SG Pet Care">
+
+    <!-- Botão Hamburguer (aparece apenas no celular) -->
+    <button class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+            onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Links Desktop -->
+    <div class="w3-right w3-hide-small menu-links">
+        <a href="" class="w3-bar-item w3-button">Início</a>
+        <a href="" class="w3-bar-item w3-button">Sobre</a>
+
+        <!-- Dropdown Roupas -->
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Roupas <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-white">
+                <a href="" class="w3-bar-item w3-button">Masculino</a>
+                <a href="" class="w3-bar-item w3-button">Feminino</a>
+            </div>
+        </div>
+
+        <a href="" class="w3-bar-item w3-button">Contato</a>
+    </div>
+</div>
+
+
+    <p>NOSSOS CLIENTES</p>
+
+    <h1>Eles são a nossa parte favorita do trabalho</h1>
+
+    <!-- CARROSSEL -->
+    <div class="carousel-wrapper">
+        <div class="blur-img blur-prev"></div>
+
+        <div class="w3-content w3-section carousel-container">
+        <img class="carousel-img" src="IMG/img1.png ">
+        <img class="carousel-img" src="IMG/img2.jpeg">
+        <img class="carousel-img" src="IMG/img3.jpeg">
+
+        <button class="carousel-btn btn-prev" onclick="prevSlide()">❮</button>
+        <button class="carousel-btn btn-next" onclick="nextSlide()">❯</button>
+</div>
+
+
+        <div class="blur-img blur-next"></div>
+</div>
+<script src="Js/nossosClientes.js"></script>
+</body>
+</html>
