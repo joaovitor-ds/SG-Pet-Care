@@ -9,18 +9,43 @@
     <title>SG Pet Care</title>
 </head>
 <body>
-    <nav style="width: 100%; z-index: 9999">
-    <ul style="width: 100%; display: flex; justify-content: center;">
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-home"></i><br>Início</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-list-ol"></i><br>Quem somos</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-book"></i><br>Serviços</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-shopping-cart"></i><br>Preços</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-user"></i><br>Nossos Clientes</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-home"></i><br>Localização</a></li>
-        <li><a class="w3-opacity w3-hover-opacity-off" href="#"><i class="fa fa-phone"></i><br>Contato</a></li>
-        <button class="fa fa-whatsapp">Agendar pelo WhatsApp</button>
-    </ul>
-    </nav>
+        <!-- NAVBAR -->
+<div class="w3-bar w3-padding w3-large navbar">
+
+    <!-- Logo -->
+    <img class="w3-bar-item logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
+
+    <!-- Botão Hamburguer (aparece apenas no celular) -->
+    <button class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+            onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Links Desktop -->
+    <div class="w3-right w3-hide-small menu-links">
+        <a href="index.html" class="w3-bar-item ">Início</a>
+        <a href="" class="w3-bar-item ">Quem Somos</a>
+
+        <!-- Dropdown Roupas -->
+        <div class="w3-dropdown-hover">
+            <button class="">Serviços <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block">
+                <a href="" class="w3-bar-item ">Banho + tosa Higienica</a>
+                <a href="" class="w3-bar-item ">Banho em gatos</a>
+                <a href="" class="w3-bar-item ">Tosa</a>
+            </div>
+        </div>
+        <a href="" class="w3-bar-item ">Preços</a>
+        <a href="" class="w3-bar-item ">Nossos Clientes</a>
+        <a href="" class="w3-bar-item ">Localização</a>
+        <a href="" class="w3-bar-item ">Contato</a>
+        
+    </div>
+</div>
+
+        <a href="" class="w3-bar-item ">Contato</a>
+    </div>
+</div>
     <div class="w3-container">
         <div class="w3-half">
             <img class="borda" src="IMG/img1.png" alt="Imagem de cachorro">
