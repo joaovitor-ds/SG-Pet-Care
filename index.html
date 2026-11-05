@@ -1,77 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/index.css">
-    <link rel="stylesheet" href="Css/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>SG Pet Care</title>
 </head>
 
 <body>
+    <nav class="navbar">
 
-    <div class="w3-bar w3-padding w3-large navbar">
+        <img class="logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
+        <p class="logo-nome">SG Pet Care</p>
 
-        <!-- Logo -->
-        <img class="w3-bar-item logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
-
-        <!-- Botão Hamburguer (aparece apenas no celular) -->
-        <button class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="toggleMenu()">
+        <!-- Botão do menu para celulares -->
+        <button class="botao-menu-celular" onclick="toggleMenu()">
             <i class="fa fa-bars"></i>
         </button>
 
-        <!-- Links Desktop -->
-        <div class="w3-right w3-hide-small menu-links">
-            <a href="index.html" class="w3-bar-item ">Início</a>
-            <a href="" class="w3-bar-item ">Quem Somos</a>
+        
+        <div class="menu-links">
 
-            <!-- Dropdown Roupas -->
-            <div class="w3-dropdown-hover">
-                <button class="">Serviços <i class="fa fa-caret-down"></i></button>
+            <a href="#" class="item-navegacao">Início</a>
 
-            </div>
+            <a href="index.html" class="item-navegacao">Quem Somos</a>
+
+            <a href="#" class="item-navegacao">Serviços</a>
+
+            <a href="#" class="item-navegacao">Preços</a>
+
+            <a href="nossosClientes.html" class="item-navegacao">Nossos Clientes</a>
+
+            <a href="#" class="item-navegacao">Localização</a>
+
+            <a href="Contato.html" class="item-navegacao">Contato</a>
+
         </div>
-        <a href="" class="w3-bar-item ">Preços</a>
-        <a href="" class="w3-bar-item ">Nossos Clientes</a>
-        <a href="" class="w3-bar-item ">Localização</a>
-        <a href="" class="w3-bar-item ">Contato</a>
 
-    </div>
+    </nav>
 
-    </div>
-    <div class="w3-container">
-        <div class="w3-half">
-            <img class="borda" src="IMG/img1.png" alt="Imagem de cachorro">
+
+    <!-- SEÇÃO QUEM SOMOS -->
+    <section class="secao-quem-somos">
+
+        <!-- Coluna da imagem -->
+        <div class="coluna-metade">
+
+            <img class="borda" src="Img/img1.png" alt="Imagem de cachorro">
+
         </div>
-        <div class="w3-half">
+
+        <!-- Coluna do texto -->
+        <div class="coluna-metade">
+
             <p>QUEM SOMOS</p>
-            <h1>Cuidar bem é uma questão de atenção</h1>
-            <p>O SG Pet Care existe para oferecer cuidados de qualidade a cães e gatos, com um atendimento tranquilo e
-                individual.
-                Cada pet chega com a sua história, o seu ritmo e o seu jeito - e é assim que ele é recebido aqui.</p>
-            <p>Banho, tosa e higiene feitos com calma, capricho e respeito, para que a visita seja confortável do começo
-                ao fim.</p>
 
-            <div class="container">
-                <div class="w3-third w3-card">
+            <h1>Cuidar bem é uma questão de atenção</h1>
+
+            <p>
+                O SG Pet Care existe para oferecer cuidados de qualidade a cães e gatos, com um atendimento tranquilo e individual.
+                Cada pet chega com a sua história, o seu ritmo e o seu jeito - e é assim que ele é recebido aqui.
+            </p>
+
+            <p>
+                Banho, tosa e higiene feitos com calma, capricho e respeito, para que a visita seja confortável do começo ao fim.
+            </p>
+
+
+
+            <div class="lista-diferenciais">
+
+                <div class="cartao-diferencial">
                     Cuidado individual
                 </div>
 
-                <div class="w3-third w3-card">
+                <div class="cartao-diferencial">
                     Cães e gatos
                 </div>
 
-                <div class="w3-third w3-card">
-                    Taxi Dog disponivel
+                <div class="cartao-diferencial">
+                    Táxi Dog disponível
                 </div>
+
             </div>
 
         </div>
-    </div>
 
-
+    </section>
+    <!-- RODAPÉ -->
+        <footer class="rodape">
+                <p>© <b>SG Pet Care</b> - Fale conosco: (17) 99208-9624</p>
+            </footer>
 </body>
-
 </html>
