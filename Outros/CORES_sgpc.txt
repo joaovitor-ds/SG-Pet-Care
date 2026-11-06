@@ -1,0 +1,8 @@
+CORES
+
+#B86229  -terra cota/laranja
+#66615C  -cinza
+#E5EFF2  -azul suave
+#1D5C61  -azul petróleo
+#4B2B0C  -marrom
+#F2EBDE  -bege

@@ -5,6 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2EBDE;
 }
 
 
@@ -16,7 +17,7 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    background-color: aqua;
+    background-color:#f0f4f5;
 
     /* Espaçamento interno da navegação */
     padding: 8px 16px;
@@ -44,10 +45,6 @@ body {
     margin-right: 300px; 
     padding: 0; 
     cursor: default;
-    transition: transform 0.2s ease-in-out;
-}
-.logo-nome:hover {
-    transform: scale(1.08);
 }
 
 
@@ -67,8 +64,7 @@ body {
     border: none;
     background-color: transparent;
     color: inherit;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
@@ -78,7 +74,7 @@ body {
 .item-navegacao:hover,
 .botao-navegacao:hover {
     color: white;
-    background-color: red;
+    background-color: #1D5C61;
     transition: 0.3s;
 }
 
@@ -94,20 +90,20 @@ body {
 }
 
 
-/* =========================================
-   SEÇÃO QUEM SOMOS
-========================================= */
+/*Quem Somos*/
 
 .secao-quem-somos {
     display: flex;
     width: 100%;
-
     padding: 16px;
     gap: 20px;
 }
 
+h1{
+    font-size: 37px;
+}
 
-/* DIVISÃO DAS DUAS COLUNAS */
+/*Divisão das colunas*/
 
 .coluna-metade {
     flex: 1;
@@ -118,9 +114,9 @@ body {
 /* IMAGEM */
 
 .coluna-metade img {
-    width: 70%;
+    width: 60%;
     height: auto;
-    margin-left: 60%;
+    margin-left: 20%;
 }
 
 
@@ -131,27 +127,29 @@ body {
     border-width: 10px;
 }
 
+.p{
+    font-size: 25px;
+}
 
-/* =========================================
-   CARTÕES DE DIFERENCIAIS
-========================================= */
+
+/*Cartões*/
 
 .lista-diferenciais {
     display: flex;
-    gap: 12px;
+    gap: 30px;
+    
 }
 
 /* Estilo individual de cada cartão */
 .cartao-diferencial {
     flex: 1;
-
     padding: 16px;
-
     background-color: white;
-
-    /* Sombra dos cartões */
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
                 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border: 2px;
+  /* Controla o arredondamento dos cantos */
+    border-radius: 24px; 
 }
 
 
@@ -215,10 +213,18 @@ body {
     }
 
 }
+
 .rodape {
     margin-top: 40px;
     text-align: center;
     padding: 8px 16px;
 }
 
-h1{}
+
+    
+/*color: #B86229  -terra cota/laranja;
+color: #66615C  -cinza;
+color: #E5EFF2  -azul suave;
+color: #1D5C61  -azul petróleo;
+color: #4B2B0C  -marrom;
+color: #F2EBDE  -bege;*/
