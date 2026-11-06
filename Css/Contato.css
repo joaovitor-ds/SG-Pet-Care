@@ -1,0 +1,81 @@
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo da logo sem ser clicável */
+.logo {
+    width: 150px;       /* tamanho recomendado */
+    height: 150px;       /* mantém proporção */
+    margin-right: auto;
+    padding: 0;
+    cursor: default;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse */
+.logo:hover {
+    transform: scale(1.08); /* Aumenta levemente */
+}
+
+/* Links à direita */
+.menu-links a,
+.menu-links button {
+    margin-left: 5px;
+}
+
+.agendamento{
+    position: relative;
+    background-color: #30858b;
+    color: #fff;
+    border-radius: 12px;
+    margin: 24px;
+    padding: 80px 24px;
+    text-align: center;
+    overflow: hidden;
+}
+.agendamento h2{
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.2;
+    margin: 0 0 28px;
+}
+.agendamento p{
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e4eeee;
+    margin-bottom: 40px;
+}
+.btnAgendar{
+    display: inline-block;
+    background-color: #fff;
+    color: #222;
+    text-decoration: none;
+    padding: 17px 28px;
+    border-radius: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.btnAgendar:hover {
+    background-color: #e6eeee;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .agendamento {
+        margin: 12px;
+        padding: 65px 20px;
+    }
+
+    .agendamento h2 {
+        font-size: 32px;
+    }
+
+    .quebra {
+        display: none;
+    }
+}

@@ -1,0 +1,16 @@
+Index:
+diminuir tamanho da logo
+trocar a cor
+centralizar os itens da navbar
+tirar o dropdown
+tirar o fundo vermelho
+trocar a fonte
+transição na navbar tbm
+mudar a cor do body
+
+Nossos Clientes:
+margin na letra esquerda
+trocar a cor da fonte
+
+Contato:
+tamanho do btn
