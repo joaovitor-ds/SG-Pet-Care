@@ -214,13 +214,35 @@ h1{
 
 }
 
-.rodape {
-    margin-top: 40px;
-    text-align: center;
-    padding: 8px 16px;
+/*rodape*/
+footer *{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 1px;
 }
 
-
+footer{
+    width: 100%;
+}
+#footer_content{
+    background-color:#E5EFF2;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 3rem 3.5rem;
+}
+#footer_contacts h1{
+    margin-bottom: 0.75rem;
+}
+#footer_social_media{
+    display: flex;
+    gap:2rem;
+    margin-top: 1.5rem;
+}
+#footer_social_media .footer-link{
+    height: 2.5rem;
+    width: 2.5rem;
+}
     
 /*color: #B86229  -terra cota/laranja;
 color: #66615C  -cinza;
