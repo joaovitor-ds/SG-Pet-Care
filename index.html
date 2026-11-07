@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG Pet Care | Banho e Tosa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MENU DO TOPO -->
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a href="#inicio" class="logo">SG Pet Care</a>
+
+            <button class="btn-menu" onclick="abrirMenu()">☰</button>
+
+            <nav class="menu">
+                <a href="#inicio">Início</a>
+                <a href="#quem-somos">Quem Somos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#precos">Preços</a>
+                <a href="#clientes">Nossos Clientes</a>
+                <a href="#localizacao">Localização</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+            <a href="https://wa.me/5500000000000" class="botao botao-verde">Agendar pelo WhatsApp</a>
+        </div>
+    </header>
+
+    <!-- SEÇÃO PRINCIPAL -->
+    <main id="inicio" class="hero">
+        <div class="container hero-conteudo">
+
+            <div class="hero-texto">
+                <p class="subtitulo">CUIDADO QUE SEU PET MERECE</p>
+
+                <h1>
+                    Um momento especial
+                    <span class="destaque">para quem</span>
+                    é da família
+                </h1>
+
+                <p class="descricao">
+                    Banho, tosa e cuidados de higiene feitos com calma,
+                    atenção e carinho — respeitando o jeitinho de cada pet.
+                </p>
+
+                <div class="botoes">
+                    <a href="https://wa.me/5500000000000" class="botao botao-verde">Agendar pelo WhatsApp</a>
+                    <a href="#servicos" class="botao botao-branco">Conhecer nossos serviços</a>
+                </div>
+            </div>
+
+            <div class="hero-imagem">
+                
+                <img src="cachorro.jpg" alt="Cachorro após o banho e tosa">
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FAIXA DE ATALHOS -->
+    <section class="atalhos">
+        <div class="container atalhos-conteudo">
+            <a href="#servicos" class="atalho">🛁 Banho &amp; Tosa</a>
+            <a href="#pacotes" class="atalho">📅 Pacotes</a>
+            <a href="#taxi" class="atalho">🚗 Taxi Dog</a>
+            <a href="#cuidados" class="atalho">✨ Cuidados</a>
+            <a href="#precos" class="atalho">🏷️ Preços</a>
+            <a href="https://wa.me/5500000000000" class="atalho atalho-verde">💬 WhatsApp</a>
+        </div>
+    </section>
+
+    <script>
+    function abrirMenu() {
+        var menu = document.querySelector(".menu");
+        var botao = document.querySelector(".btn-menu");
+
+        menu.classList.toggle("aberto");
+
+        if (menu.classList.contains("aberto")) {
+            botao.textContent = "✕";
+        } else {
+            botao.textContent = "☰";
+        }
+    }
+    
+    </script>
+</body>
+</html>
