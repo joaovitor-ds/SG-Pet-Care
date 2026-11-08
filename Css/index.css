@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F2EBDE;
+    background-color: #E5EFF2;
 }
 
 
@@ -17,8 +17,8 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    background-color:#f0f4f5;
-
+    background-color:#1D5C61;
+    color: #F2EBDE;
     /* Espaçamento interno da navegação */
     padding: 8px 16px;
 
@@ -30,7 +30,7 @@ body {
     width: 90px;
     height: 90px;
     margin-right: auto;
-    margin-left: 90px;
+    margin-left: 2rem;
     padding: 0;
     cursor: default;
     transition: transform 0.2s ease-in-out;
@@ -101,6 +101,7 @@ body {
 
 h1{
     font-size: 37px;
+    color:#154a4e;
 }
 
 /*Divisão das colunas*/
@@ -127,10 +128,6 @@ h1{
     border-width: 10px;
 }
 
-.p{
-    font-size: 25px;
-}
-
 
 /*Cartões*/
 
@@ -144,7 +141,8 @@ h1{
 .cartao-diferencial {
     flex: 1;
     padding: 16px;
-    background-color: white;
+    background-color: #F2EBDE;
+    color: #4B2B0C;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
                 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     border: 2px;
