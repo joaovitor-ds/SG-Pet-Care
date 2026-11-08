@@ -225,11 +225,16 @@ footer *{
 footer{
     width: 100%;
 }
+.footer_link{
+    text-decoration: none;
+}
 #footer_content{
-    background-color:#E5EFF2;
+    background-color:#1D5C61;
+    color: white;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     padding: 3rem 3.5rem;
+    justify-items: center;
 }
 #footer_contacts h1{
     margin-bottom: 0.75rem;
@@ -239,11 +244,75 @@ footer{
     gap:2rem;
     margin-top: 1.5rem;
 }
-#footer_social_media .footer-link{
+#footer_social_media .footer_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 2.5rem;
     width: 2.5rem;
+    color: white;
+    border-radius: 50%;
+    transition:all 0.4s; /*quando passar o mouse por cima o hover será mais lento*/
 }
-    
+
+#footer_social_media .footer_link:hover{
+    opacity: 0.8;
+}
+
+/*Aumenta o tamanho do icone da rede social*/
+#footer_social_media .footer_link i{
+    font-size: 1.25rem;
+}
+
+#instagram{
+    background: linear-gradient(#7f37c9, #ff2992, #ff9887);
+}
+
+ #whatsapp{
+    background: #25d366;
+ }   
+
+ .footer_list{
+    display: flex;
+    flex-direction: column;
+    gap:0.75rem;
+    list-style: none;
+ }
+
+ .footer_list .footer_link{
+    transition:all 0.4s;
+    color: #b4aea8;
+ }
+
+ .footer_list .footer_link:hover{
+    color:#E5EFF2;
+ }
+
+ #footer_copyright{
+    background-color:#154a4e;
+    color: #b4aea8;
+    display: flex;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+ }
+
+ /*--RESPONSIVIDADE DO RODAPÉ--*/
+ @media screen and (max-width: 768px) {
+    #footer_content{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+ }
+
+ @media screen and (max-width: 426px) {
+    #footer_content{
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
+        justify-items: left;
+    }
+ }
 /*color: #B86229  -terra cota/laranja;
 color: #66615C  -cinza;
 color: #E5EFF2  -azul suave;
