@@ -1,48 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/Contato.css">
-    <link rel="stylesheet" href="Css/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Contato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>SG Pet Care</title>
 </head>
+
 <body>
-    <!-- NAVBAR -->
-<div class="w3-bar w3-light-grey w3-padding w3-large navbar">
+    <nav class="navbar">
 
-    <!-- Logo -->
-    <img class="w3-bar-item logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
+        <img class="logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
+        <p class="logo-nome">SG Pet Care</p>
 
-    <!-- Botão Hamburguer (aparece apenas no celular) -->
-    <button class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
-            onclick="toggleMenu()">
-        <i class="fa fa-bars"></i>
-    </button>
+        <!-- Botão do menu para celulares -->
+        <button class="botao-menu-celular" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </button>
 
-    <!-- Links Desktop -->
-    <div class="w3-right w3-hide-small menu-links">
-        <a href="" class="w3-bar-item w3-button">Início</a>
-        <a href="" class="w3-bar-item w3-button">Quem Somos</a>
-
-        <!-- Dropdown Roupas -->
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">Serviços <i class="fa fa-caret-down"></i></button>
-            <div class="w3-dropdown-content w3-bar-block w3-white">
-                <a href="" class="w3-bar-item w3-button">Banho + tosa Higienica</a>
-                <a href="" class="w3-bar-item w3-button">Banho em gatos</a>
-                <a href="" class="w3-bar-item w3-button">Tosa</a>
-            </div>
-        </div>
-        <a href="" class="w3-bar-item w3-button">Preços</a>
-        <a href="" class="w3-bar-item w3-button">Nossos Clientes</a>
-        <a href="" class="w3-bar-item w3-button">Localização</a>
-        <a href="" class="w3-bar-item w3-button">Contato</a>
         
-    </div>
-</div>
-    <section class="agendamento">
+        <div class="menu-links">
+
+            <a href="#" class="item-navegacao">Início</a>
+
+            <a href="index.html" class="item-navegacao">Quem Somos</a>
+
+            <a href="#" class="item-navegacao">Serviços</a>
+
+            <a href="#" class="item-navegacao">Preços</a>
+
+            <a href="nossosClientes.html" class="item-navegacao">Nossos Clientes</a>
+
+            <a href="#" class="item-navegacao">Localização</a>
+
+            <a href="Contato.html" class="item-navegacao">Contato</a>
+
+        </div>
+
+    </nav>
+
+<section class="agendamento">
         <div class="">
             <div style="z-index: 1;">
                 <h2>Vamos combinar o <br>
@@ -58,11 +57,58 @@
                 </p>
             </div>
         </div>
-            
-            
-            
+
     </section>
+    <!-- RODAPÉ -->
+        <footer>
+            <div id="footer_content">
+                <div id="footer_contacts">
+                    <h1 style="color: white;">Logo</h1>
+                    <p>SG Pet Care</p>
 
+                    <div id="footer_social_media">
+                    <a href="a" class="footer_link" id="instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="a" class="footer_link" id="whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+                </div>
 
+                <ul class="footer_list">
+                    <li>
+                        <h3>Navegação</h3>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Quem Somos</a>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Serviços</a>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Preços</a>
+                    </li>
+                </ul>
+                 <ul class="footer_list">
+                    <li>
+                        <h3></h3>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Nossos Clientes</a>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Localização</a>
+                    </li>
+                    <li>
+                        <a href="a" class="footer_link">Contato</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="footer_copyright">
+                &#169
+                2026 SG Pet Care. Todos os direitos reservados.
+            </div>
+        </footer>
 </body>
 </html>
