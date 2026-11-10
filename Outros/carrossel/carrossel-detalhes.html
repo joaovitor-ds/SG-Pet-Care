@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Carrossel (details.php)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{
+  --bg:#000000;
+  --panel:#0a0a0a;
+  --muted:#9aa6b0;
+  --accent:#4f6ef6;
+  --accent-2:#7a3df0;
+  --radius:8px;
+}
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;}
+body{margin:0;background:var(--bg);color:#fff;min-height:100vh;padding:22px}
+.wrap{max-width:1000px;margin:0 auto}
+
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn:hover{color:#fff;border-color:rgba(255,255,255,0.08)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:#fff;padding:10px 14px}
+
+/* Carrossel */
+.slider-area{margin-top:18px;}
+.slider{position:relative;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+.slides{display:flex;transition:transform .45s cubic-bezier(.22,.9,.28,1);will-change:transform}
+.slide{min-width:100%;flex:0 0 100%;display:flex;align-items:center;justify-content:center;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+.slide img{max-width:100%;max-height:460px;object-fit:contain;border-radius:6px}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;font-size:16px}
+.arrow.left{left:12px} .arrow.right{right:12px}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.06);cursor:pointer}
+.dot.active{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+.thumb-row{display:flex;gap:12px;margin-top:12px;overflow-x:auto;padding-bottom:6px}
+.thumb{min-width:140px;flex:0 0 140px;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:transform .15s}
+.thumb img{width:100%;height:88px;object-fit:cover;display:block}
+.thumb.active{border-color:rgba(122,61,240,0.6);transform:translateY(-6px);box-shadow:0 18px 40px rgba(122,61,240,0.06)}
+
+/* Lightbox */
+#lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.78);z-index:1200;padding:16px}
+#lightbox .box{max-width:1100px;width:100%;background:var(--panel);border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
+#lightbox img{width:100%;height:640px;max-height:75vh;object-fit:contain;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="slider-area">
+    <div class="slider" id="slider">
+      <div class="slides" id="slides">
+        <!-- Troque as URLs pelas suas imagens -->
+        <div class="slide"><img src="https://via.placeholder.com/1200x700/1a1a2e/ffffff?text=Imagem+1" alt="Print"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1200x700/16213e/ffffff?text=Imagem+2" alt="Print"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1200x700/0f3460/ffffff?text=Imagem+3" alt="Print"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1200x700/533483/ffffff?text=Imagem+4" alt="Print"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1200x700/e94560/ffffff?text=Imagem+5" alt="Print"></div>
+      </div>
+      <button class="arrow left" id="prev">&#10094;</button>
+      <button class="arrow right" id="next">&#10095;</button>
+    </div>
+
+    <div class="dots" id="dots">
+      <div class="dot active" data-index="0"></div>
+      <div class="dot" data-index="1"></div>
+      <div class="dot" data-index="2"></div>
+      <div class="dot" data-index="3"></div>
+      <div class="dot" data-index="4"></div>
+    </div>
+
+    <div class="thumb-row" id="thumbRow">
+      <div class="thumb active" data-index="0"><img src="https://via.placeholder.com/1200x700/1a1a2e/ffffff?text=Imagem+1" alt="Thumb 1"></div>
+      <div class="thumb" data-index="1"><img src="https://via.placeholder.com/1200x700/16213e/ffffff?text=Imagem+2" alt="Thumb 2"></div>
+      <div class="thumb" data-index="2"><img src="https://via.placeholder.com/1200x700/0f3460/ffffff?text=Imagem+3" alt="Thumb 3"></div>
+      <div class="thumb" data-index="3"><img src="https://via.placeholder.com/1200x700/533483/ffffff?text=Imagem+4" alt="Thumb 4"></div>
+      <div class="thumb" data-index="4"><img src="https://via.placeholder.com/1200x700/e94560/ffffff?text=Imagem+5" alt="Thumb 5"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="lightbox" role="dialog" aria-modal="true">
+  <div class="box">
+    <img id="lightboxImg" src="" alt="Preview">
+    <div style="display:flex;justify-content:space-between;margin-top:10px">
+      <button id="lbClose" class="btn">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const slidesEl = document.getElementById('slides');
+const slideCount = document.querySelectorAll('.slide').length;
+let currentIndex = 0;
+let autoplay = null;
+const AUTOPLAY_MS = 4000;
+
+function updateSlider(resetAutoplay = true){
+  slidesEl.style.transform = `translateX(${-currentIndex * 100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===currentIndex));
+  document.querySelectorAll('.thumb').forEach((t,i)=> t.classList.toggle('active', i===currentIndex));
+  if(resetAutoplay) restartAutoplay();
+}
+document.getElementById('prev').addEventListener('click', ()=> { currentIndex = (currentIndex - 1 + slideCount) % slideCount; updateSlider(); });
+document.getElementById('next').addEventListener('click', ()=> { currentIndex = (currentIndex + 1) % slideCount; updateSlider(); });
+document.querySelectorAll('.dot').forEach(d => d.addEventListener('click', ()=> { currentIndex = parseInt(d.dataset.index); updateSlider(); }));
+document.querySelectorAll('.thumb').forEach(t => t.addEventListener('click', ()=> { currentIndex = parseInt(t.dataset.index); updateSlider(); }));
+
+document.querySelectorAll('.slide img').forEach(img=>{
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', ()=> openLightbox(img.src));
+});
+
+function restartAutoplay(){
+  if(autoplay) clearInterval(autoplay);
+  autoplay = setInterval(()=> {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateSlider(false);
+  }, AUTOPLAY_MS);
+}
+document.getElementById('slider').addEventListener('mouseenter', ()=> { if(autoplay) clearInterval(autoplay); });
+document.getElementById('slider').addEventListener('mouseleave', ()=> restartAutoplay());
+updateSlider(false);
+restartAutoplay();
+
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightboxImg');
+function openLightbox(src){ lbImg.src = src; lightbox.style.display = 'flex'; }
+document.getElementById('lbClose').addEventListener('click', ()=> lightbox.style.display='none');
+lightbox.addEventListener('click', (e)=> { if(e.target === lightbox) lightbox.style.display = 'none'; });
+</script>
+</body>
+</html>

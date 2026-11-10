@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossos serviços — carrossel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f9f8f3;          /* fundo creme */
+  --card:#ffffff;
+  --border:#e3e0d3;      /* borda bege */
+  --ink:#1f1f1f;         /* texto escuro */
+  --muted:#6f6f6a;       /* texto secundário */
+  --teal:#3d7480;        /* links e ícones */
+  --teal-soft:#dce9eb;   /* círculo do ícone */
+  --teal-tint:#eef5f6;   /* fundo do painel de detalhes */
+  --label:#a0714f;       /* "NOSSOS SERVIÇOS" */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);padding:40px 0 60px}
+
+.section{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--label);font-weight:500;margin:0 0 14px}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.12;margin:0;max-width:560px;letter-spacing:-.01em}
+.sub{margin:16px 0 0;font-size:13.5px;color:var(--muted)}
+
+/* ===== Cabeçalho do carrossel (setas) ===== */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nav{display:flex;gap:10px}
+.nav button{
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);color:var(--teal);
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:background .15s, transform .15s, opacity .15s;
+}
+.nav button:hover:not(:disabled){background:var(--teal-soft);transform:translateY(-2px)}
+.nav button:disabled{opacity:.35;cursor:default}
+.nav button:focus-visible,.saiba:focus-visible,.card:focus-visible,.dot:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.nav svg{width:18px;height:18px}
+
+/* ===== Trilho (scroll-snap) ===== */
+.carousel{position:relative;margin-top:34px}
+.track{
+  display:flex;gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:10px 28px 18px;
+  margin:0 -28px;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.track::-webkit-scrollbar{display:none}
+.track.dragging{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing}
+
+/* Efeito de "esmaecer" nas bordas para indicar que há mais cartões */
+.carousel::after{
+  content:"";position:absolute;top:0;right:-28px;bottom:0;width:70px;pointer-events:none;
+  background:linear-gradient(90deg, rgba(249,248,243,0), var(--bg));
+  transition:opacity .2s;
+}
+.carousel.fim::after{opacity:0}
+
+/* ===== Cartão ===== */
+.card{
+  position:relative;
+  flex:0 0 268px;
+  min-height:262px;
+  scroll-snap-align:start;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px 22px 22px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  user-select:none;
+}
+.icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--teal-soft);color:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+}
+.icon svg{width:18px;height:18px}
+.card h3{font-family:var(--serif);font-size:16px;font-weight:700;margin:34px 0 8px;line-height:1.25}
+.card p.desc{margin:0;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.saiba{
+  margin-top:auto;padding:14px 0 0;
+  background:none;border:0;font:inherit;font-size:12.5px;font-weight:500;
+  color:var(--teal);cursor:pointer;text-align:left;
+}
+.saiba span{display:inline-block;transition:transform .2s}
+.card:hover .saiba span{transform:translateX(4px)}
+
+/* ===== Painel de detalhes (aparece ao tocar ou passar o mouse) ===== */
+.more{
+  position:absolute;inset:0;
+  background:var(--teal-tint);
+  padding:24px 22px 22px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;
+  transform:translateY(12px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.more h4{font-family:var(--serif);font-size:15px;margin:0 0 10px;color:var(--teal)}
+.more p{margin:0;font-size:12.5px;line-height:1.6;color:#3b4547}
+.more ul{margin:12px 0 0;padding:0;list-style:none;font-size:12px;color:#3b4547}
+.more li{padding-left:16px;position:relative;margin-bottom:5px}
+.more li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.more .fechar{
+  margin-top:auto;align-self:flex-start;
+  background:none;border:0;padding:0;font:inherit;font-size:12.5px;font-weight:500;color:var(--teal);cursor:pointer;
+}
+
+.card.open{border-color:#c9d9dc;transform:translateY(-4px);box-shadow:0 14px 34px rgba(61,116,128,.14)}
+.card.open .more{opacity:1;visibility:visible;transform:none}
+
+/* Passar o mouse (só em dispositivos com mouse) */
+@media (hover:hover){
+  .card:hover{border-color:#c9d9dc;transform:translateY(-4px);box-shadow:0 14px 34px rgba(61,116,128,.14)}
+  .card:hover .more{opacity:1;visibility:visible;transform:none}
+}
+
+/* ===== Bolinhas ===== */
+.dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.dot{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:#d9d6c8;cursor:pointer;transition:width .25s, background .25s}
+.dot.active{width:24px;background:var(--teal)}
+
+@media (max-width:600px){
+  .section{padding:0 18px}
+  .track{padding:10px 18px 18px;margin:0 -18px}
+  .card{flex-basis:78%}
+  .nav{display:none}
+  .carousel::after{right:-18px;width:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  .track{scroll-behavior:auto}
+  .card,.more,.dot,.saiba span{transition:none}
+}
+</style>
+</head>
+<body>
+
+<section class="section" aria-labelledby="titulo-servicos">
+  <div class="head">
+    <div>
+      <p class="eyebrow">Nossos serviços</p>
+      <h2 id="titulo-servicos">Cada pet tem seu jeitinho — cada cuidado também</h2>
+      <p class="sub">Toque ou passe o mouse nos cartões para ver os detalhes de cada serviço.</p>
+    </div>
+    <div class="nav">
+      <button id="prev" aria-label="Serviços anteriores">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button id="next" aria-label="Próximos serviços">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="carousel" id="carousel" role="group" aria-roledescription="carrossel" aria-label="Serviços do pet shop">
+    <div class="track" id="track" tabindex="0">
+
+      <!-- 1 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2z"/><path d="M6 12V6a2 2 0 0 1 3.4-1.4"/><path d="M7 19l-1 2M17 19l1 2"/></svg></div>
+        <h3>Banho + Tosa Higiênica</h3>
+        <p class="desc">Cuidado completo para deixar seu pet limpo, confortável e bem cuidado.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Banho + Tosa Higiênica</h4>
+          <p>Banho com produtos adequados ao tipo de pelo e à pele do seu pet, secagem cuidadosa e tosa nas áreas de higiene.</p>
+          <ul><li>Shampoo e condicionador específicos</li><li>Tosa higiênica (patinhas, barriga e região íntima)</li><li>Secagem e escovação</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l3.5 3A8 8 0 0 1 15.5 7L19 4v8a7 7 0 0 1-14 0V4z"/><path d="M9.5 12.5h.01M14.5 12.5h.01"/><path d="M10.5 15.5c.9.6 2.1.6 3 0"/></svg></div>
+        <h3>Banho em Gatos</h3>
+        <p class="desc">Também cuidamos dos gatos, com paciência e respeito ao ritmo de cada um.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Banho em Gatos</h4>
+          <p>Atendimento calmo, sem pressa e com manejo gentil, respeitando o tempo e o temperamento de cada gatinho.</p>
+          <ul><li>Ambiente tranquilo</li><li>Manejo delicado</li><li>Secagem em temperatura confortável</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5L20 18M8 16.5L20 6"/></svg></div>
+        <h3>Tosa</h3>
+        <p class="desc">Tosa na máquina, na tesoura ou de acordo com a raça do seu pet.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Tosa</h4>
+          <p>Escolhemos o estilo de tosa junto com você, sempre pensando no conforto e no tipo de pelagem do seu pet.</p>
+          <ul><li>Tosa na máquina ou na tesoura</li><li>Tosa padrão da raça</li><li>Acabamento no focinho, orelhas e patas</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg></div>
+        <h3>Corte de Unhas</h3>
+        <p class="desc">Um detalhe simples que faz diferença no conforto do dia a dia.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Corte de Unhas</h4>
+          <p>Corte feito com cuidado e ferramentas apropriadas, evitando desconforto e ajudando na postura e no andar do seu pet.</p>
+          <ul><li>Corte e lixa das unhas</li><li>Atenção ao tamanho ideal</li><li>Pode ser combinado com o banho</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9a4 4 0 0 1 8 0c0 2.5-2 3-2 5.5a2.5 2.5 0 0 1-5 0"/><path d="M12 9a1.5 1.5 0 0 1 1.5 1.5"/></svg></div>
+        <h3>Limpeza de Ouvidos</h3>
+        <p class="desc">Higiene delicada, feita com atenção e cuidado individual.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Limpeza de Ouvidos</h4>
+          <p>Limpeza suave com produtos próprios para pets, ajudando a manter os ouvidos limpos e confortáveis.</p>
+          <ul><li>Produtos específicos para pets</li><li>Higiene externa do ouvido</li><li>Aviso se notarmos algo diferente</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5c1 1.3 2.2 2 3.5 2s2.5-.7 3.5-2"/></svg></div>
+        <h3>Escovação Dentária</h3>
+        <p class="desc">Cuidado com a higiene bucal, com toda a suavidade que seu pet merece.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Escovação Dentária</h4>
+          <p>Escovação gentil com produtos próprios para pets, ajudando a manter o hálito fresco e os dentes saudáveis.</p>
+          <ul><li>Pasta e escova para pets</li><li>Higiene bucal suave</li><li>Dicas para continuar em casa</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="card" tabindex="0">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v-3l2-4.5A2 2 0 0 1 6.8 6h10.4a2 2 0 0 1 1.8 1.5L21 12v3"/><path d="M3 15h18v2.5H3z"/><circle cx="7.5" cy="17.5" r="1.7"/><circle cx="16.5" cy="17.5" r="1.7"/></svg></div>
+        <h3>Taxi Dog</h3>
+        <p class="desc">Buscamos e levamos seu pet, para o cuidado caber na sua rotina.</p>
+        <button class="saiba" type="button" aria-expanded="false">Saiba mais <span>→</span></button>
+        <div class="more">
+          <h4>Taxi Dog</h4>
+          <p>Buscamos seu pet em casa e o levamos de volta depois do atendimento, para facilitar a sua rotina.</p>
+          <ul><li>Busca e entrega</li><li>Transporte seguro e confortável</li><li>Combine o horário no agendamento</li></ul>
+          <button class="fechar" type="button">Fechar ✕</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="dots" id="dots" role="tablist" aria-label="Escolher serviço"></div>
+</section>
+
+<script>
+const track   = document.getElementById('track');
+const carousel= document.getElementById('carousel');
+const cards   = [...track.querySelectorAll('.card')];
+const prev    = document.getElementById('prev');
+const next    = document.getElementById('next');
+const dotsBox = document.getElementById('dots');
+
+/* distância de um cartão para o próximo (largura + gap) */
+function passo(){
+  if(cards.length < 2) return cards[0].offsetWidth;
+  return cards[1].offsetLeft - cards[0].offsetLeft;
+}
+
+/* bolinhas (uma por cartão) */
+cards.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot';
+  d.type = 'button';
+  d.setAttribute('aria-label', 'Ir para o serviço ' + (i + 1));
+  d.addEventListener('click', () => track.scrollTo({left: i * passo()}));
+  dotsBox.appendChild(d);
+});
+const dots = [...dotsBox.children];
+
+function atualizar(){
+  const max = track.scrollWidth - track.clientWidth;
+  const x = track.scrollLeft;
+  const noInicio = x <= 2;
+  const noFim = x >= max - 2;
+  prev.disabled = noInicio;
+  next.disabled = noFim;
+  carousel.classList.toggle('fim', noFim);
+
+  let idx = Math.round(x / passo());
+  if(noFim) idx = cards.length - 1;
+  idx = Math.max(0, Math.min(cards.length - 1, idx));
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+track.addEventListener('scroll', () => requestAnimationFrame(atualizar), {passive:true});
+window.addEventListener('resize', atualizar);
+
+prev.addEventListener('click', () => track.scrollBy({left: -passo()}));
+next.addEventListener('click', () => track.scrollBy({left:  passo()}));
+
+/* teclado: setas esquerda/direita no trilho */
+track.addEventListener('keydown', e => {
+  if(e.target !== track) return;
+  if(e.key === 'ArrowRight'){ track.scrollBy({left: passo()}); e.preventDefault(); }
+  if(e.key === 'ArrowLeft'){  track.scrollBy({left: -passo()}); e.preventDefault(); }
+});
+
+/* arrastar com o mouse (no celular o toque já rola sozinho) */
+let arrastando = false, startX = 0, startScroll = 0, moveu = false;
+track.addEventListener('pointerdown', e => {
+  if(e.pointerType !== 'mouse') return;
+  arrastando = true; moveu = false;
+  startX = e.clientX; startScroll = track.scrollLeft;
+});
+window.addEventListener('pointermove', e => {
+  if(!arrastando) return;
+  const dx = e.clientX - startX;
+  if(Math.abs(dx) > 5){ moveu = true; track.classList.add('dragging'); }
+  if(moveu) track.scrollLeft = startScroll - dx;
+});
+window.addEventListener('pointerup', () => {
+  if(!arrastando) return;
+  arrastando = false;
+  if(moveu){
+    track.classList.remove('dragging');
+    track.scrollTo({left: Math.round(track.scrollLeft / passo()) * passo()});
+  }
+});
+
+/* detalhes: abrir/fechar ao tocar (e também ao passar o mouse, via CSS) */
+function fecharTodos(except){
+  cards.forEach(c => {
+    if(c !== except){
+      c.classList.remove('open');
+      c.querySelector('.saiba').setAttribute('aria-expanded','false');
+    }
+  });
+}
+cards.forEach(card => {
+  const saiba  = card.querySelector('.saiba');
+  const fechar = card.querySelector('.fechar');
+
+  function alternar(abrir){
+    fecharTodos(card);
+    card.classList.toggle('open', abrir);
+    saiba.setAttribute('aria-expanded', abrir);
+  }
+
+  card.addEventListener('click', e => {
+    if(moveu) return;                 // foi um arraste, não um toque
+    if(e.target.closest('.fechar')) return;
+    alternar(!card.classList.contains('open'));
+  });
+  fechar.addEventListener('click', e => { e.stopPropagation(); alternar(false); });
+  card.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ if(e.target === card){ e.preventDefault(); alternar(!card.classList.contains('open')); } }
+    if(e.key === 'Escape') alternar(false);
+  });
+});
+
+atualizar();
+</script>
+</body>
+</html>
