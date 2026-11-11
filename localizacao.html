@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Codificação de caracteres (acentos e cedilha) -->
+  <meta charset="UTF-8">
+
+  <!-- Faz a página se ajustar à tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Título que aparece na aba do navegador -->
+  <title>Localização | SG Pet Care</title>
+
+  <!-- Descrição que aparece nos resultados do Google -->
+  <meta name="description" content="Veja onde fica o SG Pet Care, em Barretos - SP, e fale com a gente pelo WhatsApp.">
+
+  <!-- Ícone da aba do navegador -->
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+
+  <!-- Carrega as fontes Fraunces (títulos) e Manrope (textos) do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+
+  <!-- Estilos desta página (esta página não precisa de JavaScript) -->
+  <link rel="stylesheet" href="localizacao.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       ÍCONES
+       Biblioteca de desenhos escondida. Cada ícone é chamado depois com
+       <use href="#nome-do-icone">.
+       ====================================================================== -->
+  <svg class="desenhos-icones" aria-hidden="true">
+
+    <!-- Balão de mensagem (WhatsApp) -->
+    <symbol id="icone-mensagem" viewBox="0 0 24 24">
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+    </symbol>
+
+    <!-- Pin de localização -->
+    <symbol id="icone-localizacao" viewBox="0 0 24 24">
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </symbol>
+
+  </svg>
+
+  <div class="pagina">
+
+    <!-- ====================================================================
+         CONTEÚDO PRINCIPAL
+         ==================================================================== -->
+    <main>
+
+      <!-- SEÇÃO: LOCALIZAÇÃO
+           Lado esquerdo: título, endereço e botão. Lado direito: mapa. -->
+      <section id="localizacao" class="secao">
+        <div class="duas-colunas">
+
+          <!-- Coluna do texto -->
+          <div>
+            <p class="chamada-secao">Onde estamos</p>
+            <h1 class="titulo-localizacao"> Pertinho de você e do seu pet </h1>
+
+            <!-- Endereço do pet shop, com ícone de pin -->
+            <p class="endereco">
+              <svg viewBox="0 0 24 24" class="icone-endereco icone" aria-hidden="true"><use href="#icone-localizacao"></use></svg>
+              Tv. Nossa Sra. das Graças, nº 16 - Monte Castelo, Barretos - SP, 14781-359.
+            </p>
+
+            <!-- Botão que abre o WhatsApp pedindo o endereço -->
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20o%20endere%C3%A7o%20do%20SG%20Pet%20Care."
+               target="_blank" rel="noreferrer" class="botao-consultar">
+              <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+              Falar pelo WhatsApp
+            </a>
+          </div>
+
+          <!-- Coluna do mapa (Google Maps incorporado) -->
+          <div class="moldura-mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.9014145822434!2d-48.56530411355276!3d-20.55121420890057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bb85284b90ae37%3A0x66279cc94dd9c624!2sSG%20Pet%20Care%20Barretos!5e0!3m2!1spt-BR!2sbr!4v1794356802518!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ====================================================================
+         BOTÃO FLUTUANTE DO WHATSAPP
+         Círculo terra cota fixo no canto inferior direito da tela.
+         ==================================================================== -->
+    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20SG%20Pet%20Care."
+       target="_blank" rel="noreferrer" aria-label="Falar pelo WhatsApp" class="contato-flutuante">
+      <svg viewBox="0 0 24 24" class="icone-contato icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+    </a>
+
+  </div>
+</body>
+
+</html>

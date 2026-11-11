@@ -1,0 +1,282 @@
+/* ==========================================================================
+   SG PET CARE - PÁGINA DE LOCALIZAÇÃO (localizacao.css)
+   Estilos exclusivos desta página.
+   (A barra de navegação fica nos arquivos navbar.html / navbar.css / navbar.js)
+
+   ÍNDICE
+   1. Cores do site (variáveis)
+   2. Reset e estilos base
+   3. Ícones
+   4. Seção de localização (endereço e mapa)
+   5. Botão flutuante do WhatsApp
+   6. Acessibilidade (animações reduzidas)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CORES DO SITE
+   Para trocar uma cor em todo o site, basta mudar o valor aqui.
+   ========================================================================== */
+:root {
+  --terracota: #B86229;          /* terra cota/laranja: botões e destaques */
+  --terracota-escuro: #9C5122;   /* versão mais escura, usada ao passar o mouse nos botões */
+  --cinza: #66615C;              /* cinza: textos secundários */
+  --azul-suave: #E5EFF2;         /* azul suave: fundos de destaque (fundo do mapa) */
+  --petroleo: #1D5C61;           /* azul petróleo: ícones e detalhes */
+  --marrom: #4B2B0C;             /* marrom: textos principais e títulos */
+  --bege: #F2EBDE;               /* bege: fundo da página */
+  --branco: #FFFFFF;             /* branco: texto sobre botões coloridos */
+  --borda: rgba(75, 43, 12, 0.15); /* marrom bem clarinho, usado nas linhas e bordas */
+}
+
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   ========================================================================== */
+
+/* Remove margens/espaços padrão do navegador e faz o tamanho
+   dos elementos incluir borda e espaçamento interno */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid var(--borda);
+}
+
+/* Configurações gerais da página */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;            /* evita que o celular aumente o texto sozinho */
+  -webkit-tap-highlight-color: transparent;  /* tira o brilho ao tocar no celular */
+  scroll-behavior: smooth;                   /* rolagem suave ao clicar em links internos */
+}
+
+/* Cor de fundo, cor do texto e fonte do corpo da página */
+body {
+  min-height: 100vh;
+  background: var(--bege);
+  color: var(--marrom);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos usam a fonte Fraunces (com serifa) */
+h1,
+h2,
+h3 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: inherit;                        /* o tamanho é definido em cada classe */
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Links sem sublinhado e com a cor do texto ao redor */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Imagens, SVGs e o mapa nunca ultrapassam a largura da tela */
+img,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Contorno visível ao navegar com o teclado (Tab) */
+:focus-visible {
+  outline: 2px solid var(--terracota);
+  outline-offset: 4px;
+}
+
+
+/* ==========================================================================
+   3. ÍCONES
+   ========================================================================== */
+
+/* O bloco com todos os desenhos de ícones fica escondido;
+   cada ícone é "chamado" depois com <use> */
+.desenhos-icones {
+  display: none;
+}
+
+/* Estilo comum de todos os ícones: só contorno, sem preenchimento */
+.icone {
+  fill: none;
+  stroke: currentColor;                      /* usa a cor do texto onde está */
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Ícone pequeno, usado dentro de botões */
+.icone-botao {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Ícone médio, usado ao lado do endereço */
+.icone-endereco {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+/* ==========================================================================
+   4. SEÇÃO DE LOCALIZAÇÃO (ENDEREÇO E MAPA)
+   ========================================================================== */
+
+/* Área principal da página */
+.secao {
+  min-height: 70vh;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  scroll-margin-top: 6rem;
+}
+
+/* Duas colunas: texto/endereço de um lado e mapa do outro.
+   No celular ficam uma embaixo da outra */
+.duas-colunas {
+  display: grid;
+  align-items: center;
+  gap: 3.5rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (width >= 64rem) {
+  .duas-colunas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Textinho terra cota em maiúsculas acima do título ("Onde estamos") */
+.chamada-secao {
+  color: var(--terracota);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Título grande da página */
+.titulo-localizacao {
+  max-width: 24rem;
+  margin-top: 1.25rem;
+  font-size: 2.25rem;
+  line-height: 1.25;
+}
+
+/* Título maior em telas de computador */
+@media (width >= 64rem) {
+  .titulo-localizacao {
+    font-size: 3.1rem;
+  }
+}
+
+/* Linha do endereço: ícone de pin + texto */
+.endereco {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  color: var(--cinza);
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+/* Ícone de localização ao lado do endereço */
+.icone-endereco {
+  flex-shrink: 0;                            /* não encolhe quando o texto é longo */
+  margin-top: 0.25rem;
+  color: var(--petroleo);
+}
+
+/* Botão terra cota "Falar pelo WhatsApp" */
+.botao-consultar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  background: var(--terracota);
+  color: var(--branco);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+
+.botao-consultar:hover {
+  background: var(--terracota-escuro);
+}
+
+/* Moldura arredondada ao redor do mapa */
+.moldura-mapa {
+  overflow: hidden;                          /* corta o mapa nas bordas arredondadas */
+  border: 1px solid var(--borda);
+  border-radius: calc(0.5rem + 4px);
+  background: var(--azul-suave);
+}
+
+/* Mapa do Google (iframe) */
+.mapa {
+  width: 100%;
+  height: 320px;
+}
+
+
+/* ==========================================================================
+   5. BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================================================== */
+
+/* Botão redondo fixo no canto inferior direito da tela */
+.contato-flutuante {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: var(--terracota);
+  color: var(--branco);
+  box-shadow: 0 10px 15px -3px rgba(75, 43, 12, 0.2), 0 4px 6px -4px rgba(75, 43, 12, 0.2);
+  transition: scale 0.15s;
+}
+
+/* Cresce um pouquinho ao passar o mouse */
+.contato-flutuante:hover {
+  scale: 1.05;
+}
+
+.icone-contato {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+/* ==========================================================================
+   6. ACESSIBILIDADE
+   ========================================================================== */
+
+/* Para quem configurou o aparelho para reduzir movimento,
+   as animações ficam praticamente instantâneas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

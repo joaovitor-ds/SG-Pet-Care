@@ -1,0 +1,422 @@
+/* ==========================================================================
+   SG PET CARE - PÁGINA DE SERVIÇOS (servicos.css)
+   Estilos exclusivos desta página.
+   (A barra de navegação fica nos arquivos navbar.html / navbar.css / navbar.js)
+
+   ÍNDICE
+   1. Cores do site (variáveis)
+   2. Reset e estilos base
+   3. Ícones
+   4. Seção de serviços (título e grade)
+   5. Cartões que viram (frente e verso)
+   6. Botão flutuante do WhatsApp
+   7. Acessibilidade (animações reduzidas)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CORES DO SITE
+   Para trocar uma cor em todo o site, basta mudar o valor aqui.
+   ========================================================================== */
+:root {
+  --terracota: #B86229;          /* terra cota/laranja: botões e destaques */
+  --terracota-escuro: #9C5122;   /* versão mais escura, usada ao passar o mouse nos botões */
+  --cinza: #66615C;              /* cinza: textos secundários */
+  --azul-suave: #E5EFF2;         /* azul suave: fundos de destaque (verso dos cartões) */
+  --petroleo: #1D5C61;           /* azul petróleo: ícones e detalhes */
+  --marrom: #4B2B0C;             /* marrom: textos principais e títulos */
+  --bege: #F2EBDE;               /* bege: fundo da página */
+  --branco: #FFFFFF;             /* branco: fundo dos cartões e texto sobre botões coloridos */
+  --borda: rgba(75, 43, 12, 0.15); /* marrom bem clarinho, usado nas linhas e bordas */
+}
+
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   ========================================================================== */
+
+/* Remove margens/espaços padrão do navegador e faz o tamanho
+   dos elementos incluir borda e espaçamento interno */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid var(--borda);
+}
+
+/* Configurações gerais da página */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;            /* evita que o celular aumente o texto sozinho */
+  -webkit-tap-highlight-color: transparent;  /* tira o brilho ao tocar no celular */
+  scroll-behavior: smooth;                   /* rolagem suave ao clicar em links internos */
+}
+
+/* Cor de fundo, cor do texto e fonte do corpo da página */
+body {
+  min-height: 100vh;
+  background: var(--bege);
+  color: var(--marrom);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos usam a fonte Fraunces (com serifa) */
+h1,
+h2,
+h3 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: inherit;                        /* o tamanho é definido em cada classe */
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Links sem sublinhado e com a cor do texto ao redor */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Imagens e SVGs nunca ultrapassam a largura da tela */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botões herdam a fonte do site e ficam com cursor de "mãozinha" */
+button {
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Garante que elementos com o atributo "hidden" realmente fiquem escondidos */
+[hidden] {
+  display: none !important;
+}
+
+/* Contorno visível ao navegar com o teclado (Tab) */
+:focus-visible {
+  outline: 2px solid var(--terracota);
+  outline-offset: 4px;
+}
+
+
+/* ==========================================================================
+   3. ÍCONES
+   ========================================================================== */
+
+/* O bloco com todos os desenhos de ícones fica escondido;
+   cada ícone é "chamado" depois com <use> */
+.desenhos-icones {
+  display: none;
+}
+
+/* Estilo comum de todos os ícones: só contorno, sem preenchimento */
+.icone {
+  fill: none;
+  stroke: currentColor;                      /* usa a cor do texto onde está */
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Ícone pequeno, usado dentro de botões */
+.icone-botao {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Ícone médio, usado nos cartões */
+.icone-menu {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+/* ==========================================================================
+   4. SEÇÃO DE SERVIÇOS (TÍTULO E GRADE)
+   ========================================================================== */
+
+/* Área principal da página */
+.secao-servicos {
+  min-height: 100vh;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  scroll-margin-top: 6rem;
+}
+
+/* Caixa que centraliza o conteúdo e limita a largura */
+.conteudo {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Textinho terra cota em maiúsculas acima do título ("Nossos serviços") */
+.chamada-secao {
+  color: var(--terracota);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Título grande da página */
+.titulo-servicos {
+  max-width: 42rem;
+  margin-top: 1.25rem;
+  font-size: 2.25rem;
+  line-height: 1.25;
+}
+
+/* Frase de instrução abaixo do título ("Toque ou passe o mouse...") */
+.instrucao-servicos {
+  margin-top: 1.25rem;
+  color: var(--cinza);
+  font-size: 1rem;
+}
+
+/* Grade que organiza os cartões (1 coluna no celular) */
+.grade-servicos {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+/* Tablets: 2 cartões por linha */
+@media (width >= 48rem) {
+  .grade-servicos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Computadores: 3 cartões por linha e título maior */
+@media (width >= 64rem) {
+  .grade-servicos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .titulo-servicos {
+    font-size: 3.1rem;
+  }
+}
+
+
+/* ==========================================================================
+   5. CARTÕES QUE VIRAM (FRENTE E VERSO)
+   Estrutura de cada cartão:
+   .cartao-servico
+     └─ .giro-servico            (parte que gira)
+          ├─ .frente-servico     (ícone, nome, descrição)
+          └─ .verso-servico      (preço e botão de agendar)
+   ========================================================================== */
+
+/* Cartão: "perspective" dá o efeito 3D ao girar */
+.cartao-servico {
+  perspective: 1400px;
+  min-height: 268px;
+}
+
+/* Parte que gira, com animação de 0,6 segundo */
+.cartao-servico > .giro-servico {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* Vira o cartão (180°) ao passar o mouse, ao focar com o teclado
+   ou quando o JavaScript marca data-virado="true" */
+.cartao-servico:hover > .giro-servico,
+.cartao-servico:focus-within > .giro-servico,
+.cartao-servico[data-virado="true"] > .giro-servico {
+  transform: rotateY(180deg);
+}
+
+/* Estado normal: cartão mostrando a frente */
+.cartao-servico[data-virado="false"] > .giro-servico {
+  transform: rotateY(0);
+}
+
+/* Esconde a parte de trás de cada face enquanto ela está virada para o lado oposto */
+.cartao-servico :is(.frente-servico, .verso-servico) {
+  backface-visibility: hidden;
+}
+
+/* Estilo comum da frente e do verso: caixa com borda arredondada */
+.frente-servico,
+.verso-servico {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid var(--borda);
+  border-radius: calc(0.5rem + 4px);
+}
+
+/* Frente: fundo branco */
+.frente-servico {
+  background: var(--branco);
+}
+
+/* Verso: fundo azul suave, já girado e posicionado atrás da frente */
+.verso-servico {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: var(--azul-suave);
+}
+
+/* Círculo azul suave que fica atrás do ícone do serviço */
+.fundo-icone-servico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: var(--azul-suave);
+  color: var(--petroleo);
+}
+
+/* Nome do serviço (frente) e nome repetido no verso */
+.titulo-servico,
+.titulo-detalhes {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.titulo-servico {
+  margin-top: 1.5rem;
+}
+
+/* Textos explicativos em cinza (frente e verso) */
+.descricao-servico,
+.detalhe-servico {
+  color: var(--cinza);
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.descricao-servico {
+  margin-top: 0.75rem;
+}
+
+.detalhe-servico {
+  margin-top: 0.5rem;
+}
+
+/* Botão "Saiba mais →" - fica sempre no fim da frente do cartão */
+.botao-detalhes {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  color: var(--petroleo);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Preço do serviço, em terra cota e letra grande (verso) */
+.preco-servico {
+  margin-top: 1rem;
+  color: var(--terracota);
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.33;
+}
+
+/* Linha com os botões "Agendar" e "Voltar" no fim do verso */
+.acoes-servico {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+/* Botão terra cota "Agendar pelo WhatsApp" do cartão */
+.agendar-servico {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 999px;
+  background: var(--terracota);
+  color: var(--branco);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+
+.agendar-servico:hover {
+  background: var(--terracota-escuro);
+}
+
+/* Botão de texto "Voltar", que desvira o cartão */
+.botao-voltar {
+  color: var(--cinza);
+  font-size: 0.875rem;
+  transition: color 0.15s;
+}
+
+.botao-voltar:hover {
+  color: var(--marrom);
+}
+
+
+/* ==========================================================================
+   6. BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================================================== */
+
+/* Botão redondo fixo no canto inferior direito da tela */
+.contato-flutuante {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: var(--terracota);
+  color: var(--branco);
+  box-shadow: 0 10px 15px -3px rgba(75, 43, 12, 0.2), 0 4px 6px -4px rgba(75, 43, 12, 0.2);
+  transition: scale 0.15s;
+}
+
+/* Cresce um pouquinho ao passar o mouse */
+.contato-flutuante:hover {
+  scale: 1.05;
+}
+
+.icone-contato {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+/* ==========================================================================
+   7. ACESSIBILIDADE
+   ========================================================================== */
+
+/* Para quem configurou o aparelho para reduzir movimento,
+   as animações (como o giro dos cartões) ficam praticamente instantâneas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Codificação de caracteres (acentos e cedilha) -->
+  <meta charset="UTF-8">
+
+  <!-- Faz a página se ajustar à tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Título que aparece na aba do navegador -->
+  <title>Barra de navegação | SG Pet Care</title>
+
+  <!-- Ícone da aba do navegador -->
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+
+  <!-- Carrega as fontes Fraunces (títulos) e Manrope (textos) do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+
+  <!-- Estilos da navbar -->
+  <link rel="stylesheet" href="navbar.css">
+
+  <!-- Script da navbar (menu do celular); "defer" espera a página carregar -->
+  <script src="navbar.js" defer=""></script>
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       ÍCONES
+       Biblioteca de desenhos escondida. Cada ícone é chamado depois com
+       <use href="#nome-do-icone">.
+       ====================================================================== -->
+  <svg class="desenhos-icones" aria-hidden="true">
+
+    <!-- Balão de mensagem (WhatsApp) -->
+    <symbol id="icone-mensagem" viewBox="0 0 24 24">
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+    </symbol>
+
+    <!-- Menu (três linhas) -->
+    <symbol id="icone-menu" viewBox="0 0 24 24">
+      <path d="M4 5h16"></path>
+      <path d="M4 12h16"></path>
+      <path d="M4 19h16"></path>
+    </symbol>
+
+  </svg>
+
+
+  <!-- ====================================================================
+       CABEÇALHO (BARRA DE NAVEGAÇÃO)
+       Barra fixa no topo com logo, menu de links e botão de WhatsApp.
+       ==================================================================== -->
+  <header class="cabecalho">
+    <div class="conteudo-cabecalho">
+
+      <!-- Logo e nome da marca (leva para a página inicial) -->
+      <a href="index.html#inicio" class="marca">
+        <img src="assets/logo_petshop.jpg" alt="Logo SG Pet Care" width="40" height="40" class="logotipo">
+        <span class="nome-marca">SG Pet Care</span>
+      </a>
+
+      <!-- Menu de links (aparece só em telas grandes) -->
+      <nav class="navegacao-principal">
+        <a href="index.html#inicio" class="link-navegacao">Início</a>
+        <a href="index.html#quem-somos" class="link-navegacao">Quem Somos</a>
+        <a href="servicos.html" class="link-navegacao">Serviços</a>
+        <a href="index.html#precos" class="link-navegacao">Preços</a>
+        <a href="index.html#clientes" class="link-navegacao">Nossos Clientes</a>
+        <a href="localizacao.html" class="link-navegacao">Localização</a>
+        <a href="index.html#contato" class="link-navegacao">Contato</a>
+      </nav>
+
+      <div class="acoes-cabecalho">
+
+        <!-- Botão que abre o WhatsApp com uma mensagem pronta -->
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20no%20SG%20Pet%20Care."
+           target="_blank" rel="noreferrer" class="agendar-cabecalho">
+          <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+          Agendar pelo WhatsApp
+        </a>
+
+        <!-- Botão de menu (aparece só no celular; o navbar.js faz ele funcionar) -->
+        <button type="button" aria-label="Abrir menu" class="botao-menu">
+          <svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-menu"></use></svg>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+</body>
+
+</html>

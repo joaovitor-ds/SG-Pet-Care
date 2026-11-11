@@ -1,0 +1,319 @@
+/* ==========================================================================
+   SG PET CARE - BARRA DE NAVEGAÇÃO (navbar.css)
+   Estilos exclusivos da navbar (cabeçalho fixo no topo).
+
+   ÍNDICE
+   1. Cores do site (variáveis)
+   2. Reset e estilos base
+   3. Ícones
+   4. Cabeçalho (logo, links e botão de WhatsApp)
+   5. Menu do celular
+   6. Acessibilidade (animações reduzidas)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CORES DO SITE
+   Para trocar uma cor em todo o site, basta mudar o valor aqui.
+   ========================================================================== */
+:root {
+  --terracota: #B86229;          /* terra cota/laranja: botões e destaques */
+  --terracota-escuro: #9C5122;   /* versão mais escura, usada ao passar o mouse nos botões */
+  --cinza: #66615C;              /* cinza: textos secundários */
+  --azul-suave: #E5EFF2;         /* azul suave: fundos de destaque */
+  --petroleo: #1D5C61;           /* azul petróleo: ícones e detalhes */
+  --marrom: #4B2B0C;             /* marrom: textos principais e títulos */
+  --bege: #F2EBDE;               /* bege: fundo da página */
+  --branco: #FFFFFF;             /* branco: texto sobre botões coloridos */
+  --borda: rgba(75, 43, 12, 0.15); /* marrom bem clarinho, usado nas linhas e bordas */
+}
+
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   ========================================================================== */
+
+/* Remove margens/espaços padrão do navegador e faz o tamanho
+   dos elementos incluir borda e espaçamento interno */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid var(--borda);
+}
+
+/* Configurações gerais da página */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;            /* evita que o celular aumente o texto sozinho */
+  -webkit-tap-highlight-color: transparent;  /* tira o brilho ao tocar no celular */
+  scroll-behavior: smooth;                   /* rolagem suave ao clicar em links internos */
+}
+
+/* Cor de fundo, cor do texto e fonte do corpo da página */
+body {
+  min-height: 100vh;
+  background: var(--bege);
+  color: var(--marrom);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links sem sublinhado e com a cor do texto ao redor */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Imagens e SVGs nunca ultrapassam a largura da tela */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botões herdam a fonte do site e ficam com cursor de "mãozinha" */
+button {
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Garante que elementos com o atributo "hidden" realmente fiquem escondidos */
+[hidden] {
+  display: none !important;
+}
+
+/* Contorno visível ao navegar com o teclado (Tab) */
+:focus-visible {
+  outline: 2px solid var(--terracota);
+  outline-offset: 4px;
+}
+
+
+/* ==========================================================================
+   3. ÍCONES
+   ========================================================================== */
+
+/* O bloco com todos os desenhos de ícones fica escondido;
+   cada ícone é "chamado" depois com <use> */
+.desenhos-icones {
+  display: none;
+}
+
+/* Estilo comum de todos os ícones: só contorno, sem preenchimento */
+.icone {
+  fill: none;
+  stroke: currentColor;                      /* usa a cor do texto onde está */
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Ícone pequeno, usado dentro do botão de WhatsApp */
+.icone-botao {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Ícone médio, usado no botão de menu */
+.icone-menu {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+/* ==========================================================================
+   4. CABEÇALHO
+   ========================================================================== */
+
+/* Cabeçalho fixo no topo da página */
+.cabecalho {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;                           /* ocupa toda a largura */
+  z-index: 50;                               /* fica por cima do resto do conteúdo */
+  border-bottom-width: 1px;
+  border-color: transparent;                 /* a borda só aparece depois de rolar a página */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Classe adicionada pelo JavaScript quando a pessoa rola a página:
+   fundo bege meio transparente com efeito de vidro desfocado */
+header.cabecalho-rolado {
+  backdrop-filter: blur(12px);
+  background: rgba(242, 235, 222, 0.9);
+  border-bottom-color: var(--borda);
+}
+
+/* Linha interna do cabeçalho: logo à esquerda, menu e botão à direita */
+.conteudo-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 70px;
+  max-width: 80rem;                          /* largura máxima do site */
+  margin-inline: auto;                       /* centraliza */
+  padding-inline: 1.5rem;
+}
+
+/* Logo + nome da marca */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Imagem do logotipo */
+.logotipo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Nome "SG Pet Care" ao lado do logo */
+.nome-marca {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+
+/* Menu de navegação do computador (escondido no celular) */
+.navegacao-principal {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+/* Cada link do menu */
+.link-navegacao {
+  color: var(--marrom);
+  font-size: 0.875rem;
+  transition: color 0.15s;
+}
+
+/* Link do menu muda para terra cota ao passar o mouse */
+.link-navegacao:hover {
+  color: var(--terracota);
+}
+
+/* Grupo do lado direito: botão de agendar + botão do menu móvel */
+.acoes-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Botão terra cota "Agendar pelo WhatsApp" (escondido em telas muito pequenas) */
+.agendar-cabecalho {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;                      /* formato de pílula */
+  background: var(--terracota);
+  color: var(--branco);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+
+.agendar-cabecalho:hover {
+  background: var(--terracota-escuro);
+}
+
+/* Botão redondo com o ícone de menu (três linhas), só aparece no celular */
+.botao-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  color: var(--marrom);
+}
+
+/* Telas a partir de 640px (tablets): mostra o botão de agendar */
+@media (width >= 40rem) {
+  .agendar-cabecalho {
+    display: inline-flex;
+  }
+}
+
+/* Telas a partir de 1024px (computadores): mostra o menu completo
+   e esconde o botão e o menu do celular */
+@media (width >= 64rem) {
+  .navegacao-principal {
+    display: flex;
+  }
+
+  .botao-menu {
+    display: none;
+  }
+
+  .menu-movel {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   5. MENU DO CELULAR
+   (a caixa é criada pelo navbar.js quando a página abre)
+   ========================================================================== */
+
+/* Caixa do menu que abre no celular */
+.menu-movel {
+  backdrop-filter: blur(12px);
+  background: rgba(242, 235, 222, 0.95);
+  border-top: 1px solid var(--borda);
+}
+
+/* Lista de links dentro do menu do celular, um embaixo do outro */
+.navegacao-movel {
+  display: flex;
+  flex-direction: column;
+  max-width: 80rem;
+  margin: auto;
+  padding: 12px 24px;
+}
+
+/* Cada link do menu do celular, com uma linha separadora embaixo */
+.navegacao-movel a {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--borda);
+  color: var(--marrom);
+  font-size: 14px;
+}
+
+/* O último link não precisa de linha embaixo */
+.navegacao-movel a:last-child {
+  border-bottom: 0;
+}
+
+.navegacao-movel a:hover {
+  color: var(--terracota);
+}
+
+
+/* ==========================================================================
+   6. ACESSIBILIDADE
+   ========================================================================== */
+
+/* Para quem configurou o aparelho para reduzir movimento,
+   as animações ficam praticamente instantâneas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
