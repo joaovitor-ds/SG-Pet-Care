@@ -4,42 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/QuemSomos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <title>SG Pet Care</title>
 </head>
 
 <body>
-    <nav class="navbar">
+    <!-- ======================================================================
+       ÍCONES
+       Biblioteca de desenhos escondida. Cada ícone é chamado depois com
+       <use href="#nome-do-icone">.
+       ====================================================================== -->
+  <svg class="desenhos-icones" aria-hidden="true">
 
-        <img class="logo" src="Img/LogoSGPC.png" alt="Logo SG Pet Care">
-        <p class="logo-nome">SG Pet Care</p>
+    <!-- Balão de mensagem (WhatsApp) -->
+    <symbol id="icone-mensagem" viewBox="0 0 24 24">
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+    </symbol>
 
-        <!-- Botão do menu para celulares -->
-        <button class="botao-menu-celular" onclick="toggleMenu()">
-            <i class="fa fa-bars"></i>
+    <!-- Menu (três linhas) -->
+    <symbol id="icone-menu" viewBox="0 0 24 24">
+      <path d="M4 5h16"></path>
+      <path d="M4 12h16"></path>
+      <path d="M4 19h16"></path>
+    </symbol>
+
+  </svg>
+
+
+  <!-- ====================================================================
+       CABEÇALHO (BARRA DE NAVEGAÇÃO)
+       Barra fixa no topo com logo, menu de links e botão de WhatsApp.
+       ==================================================================== -->
+  <header class="cabecalho">
+    <div class="conteudo-cabecalho">
+
+      <!-- Logo e nome da marca (leva para a página inicial) -->
+      <a href="index.html#inicio" class="marca">
+        <img src="IMG/LogoSGPC.png " alt="Logo SG Pet Care" width="40" height="40" class="logotipo">
+        <span class="nome-marca">SG Pet Care</span>
+      </a>
+
+      <!-- Menu de links (aparece só em telas grandes) -->
+      <nav class="navegacao-principal">
+        <a href="index.html#inicio" class="link-navegacao">Início</a>
+        <a href="index.html#quem-somos" class="link-navegacao">Quem Somos</a>
+        <a href="servicos.html" class="link-navegacao">Serviços</a>
+        <a href="index.html#precos" class="link-navegacao">Preços</a>
+        <a href="index.html#clientes" class="link-navegacao">Nossos Clientes</a>
+        <a href="localizacao.html" class="link-navegacao">Localização</a>
+        <a href="index.html#contato" class="link-navegacao">Contato</a>
+      </nav>
+
+      <div class="acoes-cabecalho">
+
+        <!-- Botão que abre o WhatsApp com uma mensagem pronta -->
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20no%20SG%20Pet%20Care."
+           target="_blank" rel="noreferrer" class="agendar-cabecalho">
+          <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+          Agendar pelo WhatsApp
+        </a>
+
+        <!-- Botão de menu (aparece só no celular; o navbar.js faz ele funcionar) -->
+        <button type="button" aria-label="Abrir menu" class="botao-menu">
+          <svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-menu"></use></svg>
         </button>
 
-        
-        <div class="menu-links">
+      </div>
+    </div>
+  </header>
 
-            <a href="#" class="item-navegacao">Início</a>
-
-            <a href="QuemSomos.html" class="item-navegacao">Quem Somos</a>
-
-            <a href="#" class="item-navegacao">Serviços</a>
-
-            <a href="#" class="item-navegacao">Preços</a>
-
-            <a href="nossosClientes.html" class="item-navegacao">Nossos Clientes</a>
-
-            <a href="#" class="item-navegacao">Localização</a>
-
-            <a href="Contato.html" class="item-navegacao">Contato</a>
-
-        </div>
-
-    </nav>
 
 
     <!-- SEÇÃO QUEM SOMOS -->
@@ -48,7 +81,7 @@
         <!-- Coluna da imagem -->
         <div class="coluna-metade">
 
-            <img class="borda" src="Img/img1.png" alt="Imagem de cachorro">
+            <img class="" src="Img/img1.png" alt="Imagem de cachorro">
 
         </div>
 
@@ -97,7 +130,7 @@
                     <p>SG Pet Care</p>
 
                     <div id="footer_social_media">
-                    <a href="a" class="footer_link" id="instagram">
+                    <a href="" class="footer_link" id="instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                     <a href="a" class="footer_link" id="whatsapp">
