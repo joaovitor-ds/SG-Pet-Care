@@ -92,9 +92,9 @@ SG-Pet-Care/
 │
 └── img/
     ├── LogoSGPC.png
-    ├── preview-site.png
-    ├── preview-servicos.png
-    ├── preview-clientes.png
+    ├── previa.png
+    ├── servicos.jpeg
+    ├── clientes.jpeg
     └── demais imagens do projeto
 
 👨‍💻 Desenvolvedores
