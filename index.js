@@ -165,29 +165,29 @@ document.querySelectorAll('.cartao-servico').forEach((cartao, indice) => {
 
 })();
 
-/* CARROSSEL - NOSSOS CLIENTES */
+/* CARROSSEL - NOSSOS CLIENTES (faixa contínua) */
 (function () {
-  const slides = document.getElementsByClassName('carousel-img');
-  const blurPrev = document.querySelector('.blur-prev');
-  const blurNext = document.querySelector('.blur-next');
-  let slideIndex = 0;
+  const raiz = document.getElementById('cr4');
+  const trilho = document.getElementById('cr4-trilho');
+  const botao = document.getElementById('cr4-controle');
+  if (!raiz || !trilho || !botao) return;
 
-  function showSlide(n) {
-    if (slides.length === 0) return;
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = 'none';
-      slides[i].style.opacity = 0;
-    }
-    slideIndex = (n + slides.length) % slides.length;
-    slides[slideIndex].style.display = 'block';
-    setTimeout(() => { slides[slideIndex].style.opacity = 1; }, 10);
-    const prev = (slideIndex - 1 + slides.length) % slides.length;
-    const next = (slideIndex + 1) % slides.length;
-    blurPrev.style.backgroundImage = `url('${slides[prev].src}')`;
-    blurNext.style.backgroundImage = `url('${slides[next].src}')`;
-  }
+  // Repete as fotos uma vez para a faixa emendar sem corte.
+  // A inclinação alternada segue a posição da foto original,
+  // assim a cópia fica igual ao início e o laço não "pula".
+  const originais = Array.from(trilho.children);
+  originais.forEach((foto, i) => {
+    foto.classList.toggle('alt', i % 2 === 1);
+    const copia = foto.cloneNode(true);
+    copia.setAttribute('aria-hidden', 'true');
+    copia.querySelector('img').alt = '';
+    trilho.appendChild(copia);
+  });
 
-  document.querySelector('.btn-prev').addEventListener('click', () => showSlide(slideIndex - 1));
-  document.querySelector('.btn-next').addEventListener('click', () => showSlide(slideIndex + 1));
-  showSlide(0);
+  // Botão Pausar / Continuar
+  botao.addEventListener('click', () => {
+    const pausado = raiz.classList.toggle('pausado');
+    botao.setAttribute('aria-pressed', pausado);
+    botao.textContent = pausado ? '▶ Continuar' : '⏸ Pausar';
+  });
 })();
