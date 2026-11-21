@@ -16,7 +16,7 @@ Site institucional desenvolvido para apresentar a SG Pet Care e seus serviços.
 📸 Prévia do projeto
 
 <div align="center">
-  <img src="img/preview-site.png" alt="Página inicial da SG Pet Care" width="90%">
+  <img src="img/previa.png" alt="Página inicial da SG Pet Care" width="90%">
 </div>
 
 📖 Sobre o projeto
@@ -42,10 +42,10 @@ O projeto foi desenvolvido com foco em uma navegação intuitiva, organização 
 🖥️ Algumas seções do site
 
 <div align="center">
-  <img src="img/preview-servicos.png" alt="Seção de serviços" width="85%">
+  <img src="img/servicos.jpeg" alt="Seção de serviços" width="85%">
   <p><strong>Serviços oferecidos</strong></p>
 
-  <img src="img/preview-clientes.png" alt="Carrossel de clientes" width="85%">
+  <img src="img/.png" alt="Carrossel de clientes" width="85%">
   <p><strong>Nossos clientes</strong></p>
 </div>
 
