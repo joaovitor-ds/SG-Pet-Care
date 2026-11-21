@@ -1,11 +1,1061 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SG Pet Care</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SG Pet Care — banho, tosa e cuidados para seu pet em Barretos - SP. Agende pelo WhatsApp.">
+  <title>SG Pet Care | Banho e Tosa</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+/* ==========================================================================
+   SG PET CARE - SITE EM UMA PÁGINA
+   Cores originais do projeto:
+   #B86229 terracota | #66615C cinza | #E5EFF2 azul suave
+   #1D5C61 petróleo  | #4B2B0C marrom | #F2EBDE bege
+   ========================================================================== */
+:root {
+  --terracota: #B86229;
+  --terracota-escuro: #9C5122;
+  --cinza: #66615C;
+  --azul-suave: #E5EFF2;
+  --petroleo: #1D5C61;
+  --marrom: #4B2B0C;
+  --bege: #F2EBDE;
+  --branco: #FFFFFF;
+  --borda: rgba(75, 43, 12, 0.15);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { line-height: 1.5; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body { min-height: 100vh; background: var(--bege); color: var(--marrom); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img, svg, iframe { display: block; max-width: 100%; }
+button { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--terracota); outline-offset: 4px; }
+section[id] { scroll-margin-top: 70px; }
+.fundo-bege { background: var(--bege); }
+
+/* Títulos das seções de Serviços e Localização (fonte Fraunces) */
+:where(.secao-servicos, .secao-localizacao) :where(h1, h2, h3) {
+  font-family: Fraunces, Georgia, serif; font-size: inherit; font-weight: 500; letter-spacing: -0.01em;
+}
+
+/* ---------- Ícones ---------- */
+.desenhos-icones { display: none; }
+.icone { fill: none; stroke: currentColor; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; }
+.icone-botao { width: 1rem; height: 1rem; }
+.icone-menu { width: 1.25rem; height: 1.25rem; }
+
+/* ==========================================================================
+   1. CABEÇALHO
+   ========================================================================== */
+.cabecalho { position: fixed; top: 0; inset-inline: 0; z-index: 50; border-bottom: 1px solid transparent; transition: background-color .3s, border-color .3s; }
+header.cabecalho-rolado { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(242, 235, 222, .95); border-bottom-color: var(--borda); }
+.conteudo-cabecalho { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 70px; max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
+.marca { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
+.logotipo { width: 2.5rem; height: 2.5rem; object-fit: contain; }
+.nome-marca { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 600; letter-spacing: -.025em; color: var(--petroleo); }
+.navegacao-principal { display: none; align-items: center; gap: 1.5rem; }
+.link-navegacao { color: var(--petroleo); font-size: .875rem; transition: color .2s; white-space: nowrap; }
+.link-navegacao:hover { color: var(--terracota); }
+.acoes-cabecalho { display: flex; align-items: center; gap: .5rem; }
+.agendar-cabecalho { display: none; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 1.25rem; border-radius: 999px; background: var(--petroleo); color: var(--branco); font-size: .875rem; font-weight: 600; white-space: nowrap; transition: background-color .2s, transform .2s; }
+.agendar-cabecalho:hover { background: var(--terracota-escuro); transform: translateY(-2px); }
+.botao-menu { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--borda); border-radius: 50%; color: var(--marrom); }
+.menu-movel { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(242, 235, 222, .97); border-top: 1px solid var(--borda); }
+.navegacao-movel { display: flex; flex-direction: column; max-width: 80rem; margin: auto; padding: 12px 24px; }
+.navegacao-movel a { padding: 12px 0; border-bottom: 1px solid var(--borda); color: var(--petroleo); font-size: 14px; transition: color .2s; }
+.navegacao-movel a:last-child { border-bottom: 0; }
+.navegacao-movel a:hover { color: var(--terracota); }
+@media (min-width: 1024px) {
+  .navegacao-principal { display: flex; }
+  .botao-menu, .menu-movel { display: none; }
+  .agendar-cabecalho { display: inline-flex; }
+}
+
+/* ==========================================================================
+   2. INÍCIO (hero) E ATALHOS
+   ========================================================================== */
+.container { width: 90%; max-width: 1230px; margin: 0 auto; }
+.botao { display: inline-block; padding: 16px 28px; border-radius: 50px; font-weight: bold; font-size: 16px; }
+.botao-verde { background-color: #1f7a80; color: white; }
+.botao-verde:hover { background-color: #17666b; }
+.botao-branco { background-color: white; color: #2b2b2b; border: 1px solid #ddd; }
+.botao-branco:hover { background-color: #f0f0f0; }
+
+.hero { background-color: #f9f7f2; color: #2b2b2b; padding: 130px 0 80px 0; }
+.hero-conteudo { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.hero-texto { width: 50%; }
+.subtitulo { color: #b8782f; font-size: 13px; font-weight: bold; letter-spacing: 2px; margin-bottom: 20px; }
+.hero-texto h1 { font-family: Georgia, "Times New Roman", serif; font-size: 64px; line-height: 1.15; margin-bottom: 30px; }
+.destaque { color: #1f7a80; }
+.descricao { font-size: 18px; line-height: 1.6; color: #555; max-width: 450px; margin-bottom: 40px; }
+.botoes { display: flex; gap: 16px; }
+.hero-imagem { width: 45%; background-color: #e3f1f1; border: 2px solid #cfe6e6; border-radius: 30px; padding: 12px; }
+.hero-imagem img { width: 100%; height: 540px; object-fit: cover; border-radius: 20px; }
+
+.atalhos { background-color: #f3efe6; border-top: 1px solid #e5e0d3; border-bottom: 1px solid #e5e0d3; padding: 24px 0; }
+.atalhos-conteudo { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+.atalho { background-color: white; color: #2b2b2b; border: 1px solid #ddd; padding: 12px 22px; border-radius: 50px; font-size: 15px; }
+.atalho:hover { background-color: #e3f1f1; }
+.atalho-verde { background-color: #1f7a80; color: white; border-color: #1f7a80; }
+.atalho-verde:hover { background-color: #17666b; }
+
+/* ==========================================================================
+   3. QUEM SOMOS
+   ========================================================================== */
+.secao-quem-somos { display: flex; align-items: center; justify-content: center; gap: 70px; width: 100%; max-width: 1200px; min-height: 650px; margin: 0 auto; padding: 80px 40px; }
+.coluna-metade { flex: 1; min-width: 0; }
+.coluna-metade img { width: 100%; max-width: 480px; height: 440px; margin: 0 auto; object-fit: cover; object-position: center; border-radius: 24px; box-shadow: 0 12px 35px rgba(75, 43, 12, .13); }
+.coluna-metade > p:first-child { margin-bottom: 15px; color: var(--terracota); font-size: .9rem; font-weight: 700; letter-spacing: 3px; }
+.coluna-metade h2 { max-width: 550px; margin-bottom: 25px; color: var(--petroleo); font-family: Georgia, serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; font-weight: 700; }
+.coluna-metade .p { margin-bottom: 18px; color: var(--cinza); font-size: 1.05rem; line-height: 1.9; }
+.lista-diferenciais { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.cartao-diferencial { display: flex; align-items: center; justify-content: center; gap: 9px; flex: 1 1 140px; min-height: 65px; padding: 14px; background: var(--branco); color: var(--marrom); border: 1px solid var(--borda); border-radius: 14px; font-size: .9rem; font-weight: 600; text-align: center; box-shadow: 0 3px 12px rgba(75, 43, 12, .05); transition: transform .2s, box-shadow .2s; }
+.cartao-diferencial:hover { transform: translateY(-4px); box-shadow: 0 7px 18px rgba(75, 43, 12, .10); }
+.cartao-diferencial i { color: var(--terracota); font-size: 1.1rem; }
+
+/* ==========================================================================
+   4. SERVIÇOS (cartões que viram)
+   ========================================================================== */
+.secao-servicos { padding-top: 6rem; padding-bottom: 6rem; }
+.secao-servicos .conteudo { max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
+.chamada-secao { color: var(--terracota); font-size: .75rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.titulo-servicos { max-width: 42rem; margin-top: 1.25rem; font-size: 2.25rem; line-height: 1.25; }
+.instrucao-servicos { margin-top: 1.25rem; color: var(--cinza); font-size: 1rem; }
+.grade-servicos { display: grid; gap: 2rem; margin-top: 3.5rem; }
+@media (min-width: 48rem) { .grade-servicos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64rem) { .grade-servicos { grid-template-columns: repeat(3, minmax(0, 1fr)); } .titulo-servicos { font-size: 3.1rem; } }
+
+.cartao-servico { perspective: 1400px; min-height: 268px; font-family: Manrope, ui-sans-serif, system-ui, sans-serif; }
+.cartao-servico > .giro-servico { position: relative; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.4, .2, .2, 1); }
+.cartao-servico:hover > .giro-servico,
+.cartao-servico:focus-within > .giro-servico,
+.cartao-servico[data-virado="true"] > .giro-servico { transform: rotateY(180deg); }
+.cartao-servico[data-virado="false"] > .giro-servico { transform: rotateY(0); }
+.cartao-servico :is(.frente-servico, .verso-servico) { backface-visibility: hidden; }
+.frente-servico, .verso-servico { display: flex; flex-direction: column; height: 100%; padding: 2rem; border: 1px solid var(--borda); border-radius: calc(.5rem + 4px); }
+.frente-servico { background: var(--branco); }
+.verso-servico { position: absolute; inset: 0; transform: rotateY(180deg); background: var(--azul-suave); }
+.fundo-icone-servico { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 999px; background: var(--azul-suave); color: var(--petroleo); }
+.titulo-servico, .titulo-detalhes { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+.titulo-servico { margin-top: 1.5rem; }
+.descricao-servico, .detalhe-servico { color: var(--cinza); font-size: .875rem; line-height: 1.625; }
+.descricao-servico { margin-top: .75rem; max-width: none; margin-bottom: 0; }
+.detalhe-servico { margin-top: .5rem; }
+.botao-detalhes { align-self: flex-start; margin-top: auto; padding-top: 1.5rem; color: var(--petroleo); font-size: .875rem; font-weight: 600; }
+.preco-servico { margin-top: 1rem; color: var(--terracota); font-family: Fraunces, Georgia, serif; font-size: 1.5rem; line-height: 1.33; }
+.acoes-servico { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: auto; padding-top: 1.5rem; }
+.agendar-servico { display: inline-flex; align-items: center; gap: .5rem; padding: .625rem 1rem; border-radius: 999px; background: var(--terracota); color: var(--branco); font-size: .875rem; font-weight: 600; transition: background-color .15s; }
+.agendar-servico:hover { background: var(--terracota-escuro); }
+.botao-voltar { color: var(--cinza); font-size: .875rem; transition: color .15s; }
+.botao-voltar:hover { color: var(--marrom); }
+
+/* ==========================================================================
+   5. PREÇOS
+   ========================================================================== */
+.precos { background-color: #f9f7f2; color: #2b2b2b; padding: 80px 0; }
+.subtitulo { text-align: left; }
+.precos-cabecalho { max-width: 700px; margin: 0 auto 40px auto; }
+.precos-cabecalho h2 { font-family: Georgia, "Times New Roman", serif; font-size: 42px; line-height: 1.2; color: #2b2b2b; font-weight: normal; }
+.tabelaX { max-width: 700px; margin: 0 auto; background-color: white; border: 1px solid #e5e0d3; border-radius: 16px; overflow: hidden; }
+.tabela-precos { width: 100%; border-collapse: collapse; text-align: left; }
+.tabela-precos th { background-color: #f3efe6; color: #2b2b2b; font-size: 14px; font-weight: bold; padding: 16px 24px; border-bottom: 1px solid #e5e0d3; }
+.tabela-precos td { padding: 16px 24px; font-size: 15px; color: #555; border-bottom: 1px solid #f0ece1; }
+.link-consultar { color: #1f7a80; font-weight: 500; }
+.link-consultar:hover { text-decoration: underline; }
+.precos-aviso { max-width: 700px; margin: 16px auto 28px auto; font-size: 13px; color: #666; line-height: 1.5; }
+.precos-acao { max-width: 700px; margin: 0 auto; }
+
+/* ==========================================================================
+   6. NOSSOS CLIENTES (carrossel)
+   ========================================================================== */
+.secao-clientes { background-color: var(--azul-suave); padding: 80px 20px 90px; text-align: center; }
+.clientes-chamada { margin-bottom: 15px; color: var(--terracota); font-size: .9rem; font-weight: 700; letter-spacing: 3px; }
+.clientes-titulo { max-width: 700px; margin: 0 auto 40px; color: var(--petroleo); font-family: Georgia, serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; font-weight: 700; }
+.carousel-wrapper { display: flex; justify-content: center; align-items: center; gap: 15px; }
+.blur-img { flex: none; width: 120px; height: 260px; background-size: cover; background-position: center; filter: blur(6px); opacity: .6; border-radius: 8px; }
+.blur-prev { margin-right: -10px; }
+.blur-next { margin-left: -10px; }
+.carousel-container { position: relative; width: min(700px, 100%); height: 350px; margin: 16px auto; overflow: hidden; }
+.carousel-img { width: 100%; height: 100%; object-fit: contain; display: none; border-radius: 8px; opacity: 0; transition: opacity .6s ease-in-out; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); padding: 12px; background: rgba(0, 0, 0, .4); color: white; border: none; cursor: pointer; font-size: 20px; z-index: 10; }
+.btn-prev { left: 5px; }
+.btn-next { right: 5px; }
+
+/* ==========================================================================
+   7. LOCALIZAÇÃO
+   ========================================================================== */
+.secao-localizacao { padding-top: 6rem; padding-bottom: 6rem; }
+.secao-localizacao .duas-colunas { display: grid; align-items: center; gap: 3.5rem; max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; text-align: left; }
+@media (min-width: 64rem) { .secao-localizacao .duas-colunas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.titulo-localizacao { max-width: 24rem; margin-top: 1.25rem; font-size: 2.25rem; line-height: 1.25; }
+@media (min-width: 64rem) { .titulo-localizacao { font-size: 3.1rem; } }
+.endereco { display: flex; gap: .75rem; margin-top: 1.5rem; color: var(--cinza); font-size: 1rem; line-height: 1.625; }
+.icone-endereco { flex-shrink: 0; margin-top: .25rem; width: 1.25rem; height: 1.25rem; color: var(--petroleo); }
+.botao-consultar { display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem; padding: 1rem 1.5rem; border-radius: 999px; background: var(--terracota); color: var(--branco); font-size: .875rem; font-weight: 600; transition: background-color .15s; }
+.botao-consultar:hover { background: var(--terracota-escuro); }
+.moldura-mapa { overflow: hidden; border: 1px solid var(--borda); border-radius: calc(.5rem + 4px); background: var(--azul-suave); }
+.moldura-mapa iframe { border: 0; width: 100%; }
+
+/* ==========================================================================
+   8. CONTATO
+   ========================================================================== */
+.secao-contato { background-color: var(--azul-suave); padding: 1px 0; }
+.agendamento { position: relative; background-color: #30858b; color: #fff; border-radius: 12px; margin: 24px; padding: 80px 24px; text-align: center; overflow: hidden; }
+.agendamento h2 { font-family: Georgia, serif; font-size: clamp(30px, 4vw, 48px); line-height: 1.2; margin: 0 0 28px; }
+.agendamento p { font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #e4eeee; margin-bottom: 40px; }
+.btnAgendar { display: inline-block; background-color: #fff; color: #222; padding: 17px 28px; border-radius: 50px; font-family: Arial, sans-serif; font-size: 14px; transition: .3s; }
+.btnAgendar:hover { background-color: #e6eeee; transform: translateY(-2px); }
+
+/* ==========================================================================
+   9. RODAPÉ
+   ========================================================================== */
+footer { width: 100%; }
+footer * { letter-spacing: .5px; }
+#footer_content { background: var(--petroleo); color: var(--branco); display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 3.5rem 4rem; justify-items: center; }
+.logo-rodape { width: 70px; height: 70px; object-fit: contain; margin-bottom: .5rem; background: #fff; border-radius: 50%; }
+#footer_social_media { display: flex; gap: 1rem; margin-top: 1.5rem; }
+#footer_social_media .footer_link { display: flex; align-items: center; justify-content: center; width: 2.7rem; height: 2.7rem; color: var(--branco); border-radius: 50%; transition: transform .2s, opacity .2s; }
+#footer_social_media .footer_link:hover { opacity: .85; transform: translateY(-3px); }
+#footer_social_media .footer_link i { font-size: 1.25rem; }
+#instagram { background: linear-gradient(#7f37c9, #ff2992, #ff9887); }
+#whatsapp { background: #25d366; }
+.footer_list { display: flex; flex-direction: column; gap: .85rem; list-style: none; }
+.footer_list h3 { margin-bottom: .3rem; color: var(--branco); font-size: 1.05rem; }
+.footer_list .footer_link { color: #d0d8d6; font-size: .9rem; transition: color .2s; }
+.footer_list .footer_link:hover { color: var(--branco); }
+#footer_copyright { background: #154a4e; color: #d0d8d6; display: flex; justify-content: center; padding: 1.5rem; font-size: .85rem; text-align: center; }
+
+/* ---------- Botão flutuante do WhatsApp ---------- */
+.contato-flutuante { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 50; display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 999px; background: var(--terracota); color: var(--branco); box-shadow: 0 10px 15px -3px rgba(75, 43, 12, .2), 0 4px 6px -4px rgba(75, 43, 12, .2); transition: scale .15s; }
+.contato-flutuante:hover { scale: 1.05; }
+.icone-contato { width: 1.5rem; height: 1.5rem; }
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .secao-quem-somos { gap: 35px; padding: 70px 30px; }
+  .coluna-metade img { height: 380px; }
+  .coluna-metade h2 { font-size: 2.1rem; }
+  .lista-diferenciais { gap: 10px; }
+  .cartao-diferencial { font-size: .82rem; }
+}
+@media (max-width: 900px) {
+  .hero { padding: 100px 0 50px 0; }
+  .hero-conteudo { flex-direction: column; align-items: flex-start; gap: 30px; }
+  .hero-texto { width: 100%; }
+  .hero-imagem { width: 100%; }
+  .subtitulo { font-size: 12px; margin-bottom: 14px; }
+  .hero-texto h1 { font-size: 40px; margin-bottom: 20px; }
+  .descricao { font-size: 16px; max-width: 100%; margin-bottom: 28px; }
+  .botoes { flex-direction: column; align-items: flex-start; }
+  .botao { white-space: nowrap; }
+  .hero-imagem img { height: 400px; }
+  .blur-img { display: none; }
+}
+@media (max-width: 600px) {
+  .conteudo-cabecalho { height: 65px; padding-inline: 18px; }
+  .nome-marca { font-size: 1.1rem; }
+  .agendar-cabecalho { display: none; }
+  .hero-texto h1 { font-size: 36px; }
+  .hero-imagem img { height: 300px; }
+  .precos-cabecalho h2 { font-size: 32px; }
+  .tabela-precos th, .tabela-precos td { padding: 14px 16px; }
+  .secao-quem-somos { flex-direction: column; gap: 35px; min-height: auto; padding: 45px 22px 55px; }
+  .coluna-metade { width: 100%; }
+  .coluna-metade img { width: 100%; height: 300px; max-width: none; border-radius: 18px; }
+  .coluna-metade h2 { font-size: 2rem; }
+  .coluna-metade .p { font-size: .98rem; line-height: 1.8; }
+  .lista-diferenciais { flex-direction: column; gap: 12px; }
+  .cartao-diferencial { flex: auto; justify-content: flex-start; padding: 16px 20px; }
+  .carousel-container { height: 260px; }
+  .agendamento { padding: 60px 20px; }
+  #footer_content { grid-template-columns: 1fr; justify-items: start; gap: 2rem; padding: 3rem 2rem; }
+  #footer_copyright { padding: 1.2rem 1rem; font-size: .78rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+  </style>
 </head>
 <body>
-    
+
+  <svg class="desenhos-icones" aria-hidden="true">
+<symbol id="icone-mensagem" viewBox="0 0 24 24">
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+    </symbol>
+<symbol id="icone-banho" viewBox="0 0 24 24">
+      <path d="M10 4 8 6"></path>
+      <path d="M17 19v2"></path>
+      <path d="M2 12h20"></path>
+      <path d="M7 19v2"></path>
+      <path d="M9 5 7.621 3.621A2.121 2.121 0 0 0 4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"></path>
+    </symbol>
+<symbol id="icone-transporte" viewBox="0 0 24 24">
+      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+      <circle cx="7" cy="17" r="2"></circle>
+      <path d="M9 17h6"></path>
+      <circle cx="17" cy="17" r="2"></circle>
+    </symbol>
+<symbol id="icone-brilhos" viewBox="0 0 24 24">
+      <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+      <path d="M20 2v4"></path>
+      <path d="M22 4h-4"></path>
+      <circle cx="4" cy="20" r="2"></circle>
+    </symbol>
+<symbol id="icone-gato" viewBox="0 0 24 24">
+      <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"></path>
+      <path d="M8 14v.5"></path>
+      <path d="M16 14v.5"></path>
+      <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"></path>
+    </symbol>
+<symbol id="icone-tesoura" viewBox="0 0 24 24">
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M8.12 8.12 12 12"></path>
+      <path d="M20 4 8.12 15.88"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <path d="M14.8 14.8 20 20"></path>
+    </symbol>
+<symbol id="icone-ouvido" viewBox="0 0 24 24">
+      <path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"></path>
+      <path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"></path>
+    </symbol>
+<symbol id="icone-sorriso" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+      <line x1="9" x2="9.01" y1="9" y2="9"></line>
+      <line x1="15" x2="15.01" y1="9" y2="9"></line>
+    </symbol>
+<symbol id="icone-menu" viewBox="0 0 24 24">
+      <path d="M4 5h16"></path>
+      <path d="M4 12h16"></path>
+      <path d="M4 19h16"></path>
+    </symbol>
+<symbol id="icone-localizacao" viewBox="0 0 24 24">
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </symbol>
+</svg>
+
+  <!-- ===== MENU DO TOPO ===== -->
+  <header class="cabecalho">
+    <div class="conteudo-cabecalho">
+      <a href="#inicio" class="marca">
+        <img src="assets/LogoSGPC.png" alt="Logo SG Pet Care" width="40" height="40" class="logotipo">
+        <span class="nome-marca">SG Pet Care</span>
+      </a>
+      <nav class="navegacao-principal">
+        <a href="#inicio" class="link-navegacao">Início</a>
+        <a href="#quem-somos" class="link-navegacao">Quem Somos</a>
+        <a href="#servicos" class="link-navegacao">Serviços</a>
+        <a href="#precos" class="link-navegacao">Preços</a>
+        <a href="#clientes" class="link-navegacao">Nossos Clientes</a>
+        <a href="#localizacao" class="link-navegacao">Localização</a>
+        <a href="#contato" class="link-navegacao">Contato</a>
+      </nav>
+      <div class="acoes-cabecalho">
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20no%20SG%20Pet%20Care." target="_blank" rel="noreferrer" class="agendar-cabecalho">
+          <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <button type="button" aria-label="Abrir menu" class="botao-menu">
+          <svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== INÍCIO ===== -->
+    <section id="inicio" class="hero">
+      <div class="container hero-conteudo">
+        <div class="hero-texto">
+          <p class="subtitulo">CUIDADO QUE SEU PET MERECE</p>
+          <h1>Um momento especial <span class="destaque">para quem</span> é da família</h1>
+          <p class="descricao">Banho, tosa e cuidados de higiene feitos com calma, atenção e carinho — respeitando o jeitinho de cada pet.</p>
+          <div class="botoes">
+            <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer" class="botao botao-verde">Agendar pelo WhatsApp</a>
+            <a href="#servicos" class="botao botao-branco">Conhecer nossos serviços</a>
+          </div>
+        </div>
+        <div class="hero-imagem">
+          <img src="assets/cachorro.jpg" alt="Cachorro após o banho e tosa">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAIXA DE ATALHOS ===== -->
+    <section class="atalhos">
+      <div class="container atalhos-conteudo">
+        <a href="#servicos" class="atalho">🛁 Banho &amp; Tosa</a>
+        <a href="#precos" class="atalho">📅 Pacotes</a>
+        <a href="#servicos" class="atalho">🚗 Taxi Dog</a>
+        <a href="#servicos" class="atalho">✨ Cuidados</a>
+        <a href="#precos" class="atalho">🏷️ Preços</a>
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer" class="atalho atalho-verde">💬 WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- ===== QUEM SOMOS ===== -->
+    <div class="fundo-bege">
+    <section id="quem-somos" class="secao-quem-somos">
+
+        <!-- Coluna da imagem -->
+        <div class="coluna-metade">
+
+            <img  src="assets/img1.png" alt="Imagem de cachorro">
+
+        </div>
+
+        <!-- Coluna do texto -->
+        <div class="coluna-metade">
+
+            <p>QUEM SOMOS</p>
+
+            <h2>Cuidar bem é uma questão de atenção</h2>
+
+            <p class="p">
+                O SG Pet Care existe para oferecer cuidados de qualidade a cães e gatos, com um atendimento tranquilo e individual.
+                Cada pet chega com a sua história, o seu ritmo e o seu jeito - e é assim que ele é recebido aqui.
+            </p>
+
+            <p class="p">
+                Banho, tosa e higiene feitos com calma, capricho e respeito, para que a visita seja confortável do começo ao fim.
+            </p>
+
+
+
+            <div class="lista-diferenciais">
+
+                <div class="cartao-diferencial">
+                    <i class="fa-regular fa-heart"></i> Cuidado individual
+                </div>
+
+                <div class="cartao-diferencial">
+                    <i class="fa fa-paw"></i> Cães e gatos
+                </div>
+
+                <div class="cartao-diferencial">
+                    <i class="fa fa-car"></i> Táxi Dog disponível
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    </div>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <div class="fundo-bege">
+    <section id="servicos" class="secao-servicos">
+        <div class="conteudo">
+
+          <p class="chamada-secao">Nossos serviços</p>
+          <h2 class="titulo-servicos"> Cada pet tem seu jeitinho — cada cuidado também </h2>
+          <p class="instrucao-servicos"> Toque ou passe o mouse nos cartões para ver os detalhes de cada serviço. </p>
+
+          <div class="grade-servicos">
+
+            <!-- CARTÃO 1: Banho + Tosa Higiênica -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-banho"></use></svg></span>
+                  <h3 class="titulo-servico">Banho + Tosa Higiênica</h3>
+                  <p class="descricao-servico"> Cuidado completo para deixar seu pet limpo, confortável e bem cuidado. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Banho + Tosa Higiênica</h3>
+                  <p class="preco-servico">R$ 50,00 — R$ 150,00</p>
+                  <p class="detalhe-servico"> O valor varia de acordo com o porte do pet. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Banho%20%2B%20Tosa%20Higi%C3%AAnica."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 2: Banho em Gatos -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-gato"></use></svg></span>
+                  <h3 class="titulo-servico">Banho em Gatos</h3>
+                  <p class="descricao-servico"> Também cuidamos dos gatos, com paciência e respeito ao ritmo de cada um. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Banho em Gatos</h3>
+                  <p class="preco-servico">Consultar</p>
+                  <p class="detalhe-servico"> Valores sob consulta pelo WhatsApp. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Banho%20em%20Gatos."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 3: Tosa -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-tesoura"></use></svg></span>
+                  <h3 class="titulo-servico">Tosa</h3>
+                  <p class="descricao-servico"> Tosa na máquina, na tesoura ou de acordo com a raça do seu pet. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Tosa</h3>
+                  <p class="preco-servico">Consultar</p>
+                  <p class="detalhe-servico"> Escolha o estilo de tosa e consulte o valor pelo WhatsApp. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Tosa."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 4: Corte de Unhas -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-brilhos"></use></svg></span>
+                  <h3 class="titulo-servico">Corte de Unhas</h3>
+                  <p class="descricao-servico"> Um detalhe simples que faz diferença no conforto do dia a dia. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Corte de Unhas</h3>
+                  <p class="preco-servico">Consultar</p>
+                  <p class="detalhe-servico"> Pode ser combinado com o banho. Consulte pelo WhatsApp. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Corte%20de%20Unhas."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 5: Limpeza de Ouvidos -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-ouvido"></use></svg></span>
+                  <h3 class="titulo-servico">Limpeza de Ouvidos</h3>
+                  <p class="descricao-servico"> Higiene delicada, feita com atenção e cuidado individual. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Limpeza de Ouvidos</h3>
+                  <p class="preco-servico">Consultar</p>
+                  <p class="detalhe-servico"> Valores sob consulta pelo WhatsApp. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Limpeza%20de%20Ouvidos."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 6: Escovação Dentária -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-sorriso"></use></svg></span>
+                  <h3 class="titulo-servico">Escovação Dentária</h3>
+                  <p class="descricao-servico"> Cuidado com a higiene bucal, com toda a suavidade que seu pet merece. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Escovação Dentária</h3>
+                  <p class="preco-servico">Consultar</p>
+                  <p class="detalhe-servico"> Valores sob consulta pelo WhatsApp. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Escova%C3%A7%C3%A3o%20Dent%C3%A1ria."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CARTÃO 7: Taxi Dog -->
+            <div class="cartao-servico" data-virado="false">
+              <div class="giro-servico">
+
+                <!-- Frente -->
+                <div class="frente-servico">
+                  <span class="fundo-icone-servico"><svg viewBox="0 0 24 24" class="icone-menu icone" aria-hidden="true"><use href="#icone-transporte"></use></svg></span>
+                  <h3 class="titulo-servico">Taxi Dog</h3>
+                  <p class="descricao-servico"> Buscamos e levamos seu pet, para o cuidado caber na sua rotina. </p>
+                  <button type="button" class="botao-detalhes"> Saiba mais → </button>
+                </div>
+
+                <!-- Verso -->
+                <div class="verso-servico">
+                  <h3 class="titulo-detalhes">Taxi Dog</h3>
+                  <p class="preco-servico">A partir de R$ 20,00</p>
+                  <p class="detalhe-servico"> O preço depende do bairro. </p>
+                  <div class="acoes-servico">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%3A%20Taxi%20Dog."
+                       target="_blank" rel="noreferrer" class="agendar-servico">
+                      <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+                      Agendar pelo WhatsApp
+                    </a>
+                    <button type="button" class="botao-voltar"> Voltar </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- fim da grade de cartões -->
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== PREÇOS ===== -->
+    <section id="precos" class="precos">
+        <div class="container">
+            <div class="precos-cabecalho">
+                <p class="subtitulo">TABELA DE PREÇOS</p>
+                <h2>Transparência desde o primeiro banho</h2>
+            </div>
+
+            <div class="tabelaX">
+                <table class="tabela-precos">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Preço / Informação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Banho + Tosa Higiênica</td>
+                            <td>R$ 50,00 a R$ 150,00</td>
+                        </tr>
+                        <tr>
+                            <td>Pacote Semanal</td>
+                            <td>R$ 140,00 / mês</td>
+                        </tr>
+                        <tr>
+                            <td>Pacote Quinzenal</td>
+                            <td>R$ 80,00</td>
+                        </tr>
+                        <tr>
+                            <td>Taxi Dog</td>
+                            <td>A partir de R$ 20,00</td>
+                        </tr>
+                        <tr>
+                            <td>Banho em gatos</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Corte de unhas</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Limpeza de ouvidos</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Escovação dentária</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Tosa na máquina</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Tosa na tesoura</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Tosa de acordo com a raça</td>
+                            <td><a href="https://wa.me/5511999999999" class="link-consultar">Consultar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="precos-aviso">
+                Os valores podem variar de acordo com o porte do pet, bairro ou serviço escolhido. Consulte as condições pelo WhatsApp.
+            </p>
+
+            <div class="precos-acao">
+                <a href="https://wa.me/5511999999999" class="botao botao-verde">💬 Consultar disponibilidade</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NOSSOS CLIENTES ===== -->
+    <section id="clientes" class="secao-clientes">
+      <p class="clientes-chamada">NOSSOS CLIENTES</p>
+      <h2 class="clientes-titulo">Eles são a nossa parte favorita do trabalho</h2>
+
+      <div class="carousel-wrapper">
+        <div class="blur-img blur-prev"></div>
+        <div class="carousel-container">
+        <img class="carousel-img" src="assets/img1.png" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img2.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img3.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img4.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img5.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img6.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img7.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img8.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img9.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img10.jpeg" alt="Pet cliente da SG Pet Care">
+        <img class="carousel-img" src="assets/img11.jpeg" alt="Pet cliente da SG Pet Care">
+          <button type="button" class="carousel-btn btn-prev" aria-label="Imagem anterior">❮</button>
+          <button type="button" class="carousel-btn btn-next" aria-label="Próxima imagem">❯</button>
+        </div>
+        <div class="blur-img blur-next"></div>
+      </div>
+    </section>
+
+    <!-- ===== LOCALIZAÇÃO ===== -->
+    <div class="fundo-bege">
+    <section id="localizacao" class="secao-localizacao">
+        <div class="duas-colunas">
+
+          <!-- Coluna do texto -->
+          <div>
+            <p class="chamada-secao">Onde estamos</p>
+            <h2 class="titulo-localizacao"> Pertinho de você e do seu pet </h2>
+
+            <!-- Endereço do pet shop, com ícone de pin -->
+            <p class="endereco">
+              <svg viewBox="0 0 24 24" class="icone-endereco icone" aria-hidden="true"><use href="#icone-localizacao"></use></svg>
+              Tv. Nossa Sra. das Graças, nº 16 - Monte Castelo, Barretos - SP, 14781-359.
+            </p>
+
+            <!-- Botão que abre o WhatsApp pedindo o endereço -->
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20o%20endere%C3%A7o%20do%20SG%20Pet%20Care."
+               target="_blank" rel="noreferrer" class="botao-consultar">
+              <svg viewBox="0 0 24 24" class="icone-botao icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+              Falar pelo WhatsApp
+            </a>
+          </div>
+
+          <!-- Coluna do mapa (Google Maps incorporado) -->
+          <div class="moldura-mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.9014145822434!2d-48.56530411355276!3d-20.55121420890057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bb85284b90ae37%3A0x66279cc94dd9c624!2sSG%20Pet%20Care%20Barretos!5e0!3m2!1spt-BR!2sbr!4v1794356802518!5m2!1spt-BR!2sbr" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato" class="secao-contato">
+      <div class="agendamento">
+        <div style="z-index: 1;">
+          <h2>Vamos combinar o <br>próximo banho?</h2>
+          <p>É só mandar uma mensagem e a gente encontra o melhor <br class="quebra">horário para o seu pet.</p>
+          <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20no%20SG%20Pet%20Care." target="_blank" rel="noreferrer" class="btnAgendar">Quero agendar</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer>
+    <div id="footer_content">
+      <div id="footer_contacts">
+        <img src="assets/LogoSGPC.png" alt="Logo SG Pet Care" class="logo-rodape">
+        <p>SG Pet Care</p>
+        <div id="footer_social_media">
+          <a href="#" class="footer_link" id="instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer" class="footer_link" id="whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <ul class="footer_list">
+        <li><h3>Navegação</h3></li>
+        <li><a href="#quem-somos" class="footer_link">Quem Somos</a></li>
+        <li><a href="#servicos" class="footer_link">Serviços</a></li>
+        <li><a href="#precos" class="footer_link">Preços</a></li>
+      </ul>
+      <ul class="footer_list">
+        <li><h3>&nbsp;</h3></li>
+        <li><a href="#clientes" class="footer_link">Nossos Clientes</a></li>
+        <li><a href="#localizacao" class="footer_link">Localização</a></li>
+        <li><a href="#contato" class="footer_link">Contato</a></li>
+      </ul>
+    </div>
+    <div id="footer_copyright">&#169; 2026 SG Pet Care. Todos os direitos reservados.</div>
+  </footer>
+
+  <!-- ===== BOTÃO FLUTUANTE DO WHATSAPP ===== -->
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20SG%20Pet%20Care." target="_blank" rel="noreferrer" aria-label="Falar pelo WhatsApp" class="contato-flutuante">
+    <svg viewBox="0 0 24 24" class="icone-contato icone" aria-hidden="true"><use href="#icone-mensagem"></use></svg>
+  </a>
+
+  <script>
+(function(){
+/* ==========================================================================
+   SG PET CARE - BARRA DE NAVEGAÇÃO (navbar.js)
+   Controla o menu do celular e o efeito do cabeçalho ao rolar a página.
+   Não usa bibliotecas externas.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. PEGAR OS ELEMENTOS DA PÁGINA
+   -------------------------------------------------------------------------- */
+
+// Cabeçalho inteiro (a barra fixa no topo)
+const cabecalho = document.querySelector('.cabecalho');
+
+// Botão com o ícone de menu (três linhas)
+const botaoMenu = cabecalho.querySelector('button');
+
+// Menu de links usado no computador
+const navegacao = cabecalho.querySelector('nav');
+
+
+/* --------------------------------------------------------------------------
+   2. CRIAR O MENU DO CELULAR
+   O menu do celular é uma cópia do menu do computador,
+   criada aqui para não precisar repetir os links no HTML.
+   -------------------------------------------------------------------------- */
+
+const menuMovel = document.createElement('div');       // caixa que guarda o menu
+const navegacaoMovel = navegacao.cloneNode(true);      // cópia dos links
+
+menuMovel.id = menuMovel.className = 'menu-movel';     // dá o nome "menu-movel" como id e classe
+menuMovel.hidden = true;                               // começa escondido
+
+navegacaoMovel.className = 'navegacao-movel';          // classe usada no CSS
+navegacaoMovel.setAttribute('aria-label', 'Navegação móvel');
+
+menuMovel.append(navegacaoMovel);                      // coloca os links dentro da caixa
+cabecalho.append(menuMovel);                           // coloca a caixa dentro do cabeçalho
+
+// Textos de acessibilidade (leitores de tela)
+navegacao.setAttribute('aria-label', 'Navegação principal');
+botaoMenu.setAttribute('aria-controls', menuMovel.id);
+botaoMenu.setAttribute('aria-expanded', 'false');
+
+
+/* --------------------------------------------------------------------------
+   3. ABRIR E FECHAR O MENU
+   -------------------------------------------------------------------------- */
+
+// Guarda o ícone original (três linhas) e define o ícone de fechar (X)
+const iconeMenu = botaoMenu.innerHTML;
+const iconeFechar =
+  '<svg class="icone icone-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"/></svg>';
+
+// Abre (aberto = true) ou fecha (aberto = false) o menu
+function alternarMenu(aberto) {
+  menuMovel.hidden = !aberto;
+  botaoMenu.setAttribute('aria-expanded', aberto);
+  botaoMenu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  botaoMenu.innerHTML = aberto ? iconeFechar : iconeMenu;   // troca o ícone
+}
+
+// Clicar no botão abre/fecha o menu
+botaoMenu.addEventListener('click', () => alternarMenu(menuMovel.hidden));
+
+// Clicar em qualquer link do menu fecha o menu
+navegacaoMovel.addEventListener('click', evento => {
+  if (evento.target.closest('a')) alternarMenu(false);
+});
+
+// Apertar a tecla Esc fecha o menu e devolve o foco ao botão
+document.addEventListener('keydown', evento => {
+  if (evento.key === 'Escape' && !menuMovel.hidden) {
+    alternarMenu(false);
+    botaoMenu.focus();
+  }
+});
+
+// Se a tela virar "grande" (1024px ou mais), fecha o menu do celular
+const telaGrande = matchMedia('(min-width: 1024px)');
+telaGrande.addEventListener('change', () => {
+  if (telaGrande.matches) alternarMenu(false);
+});
+
+
+/* --------------------------------------------------------------------------
+   4. EFEITO DO CABEÇALHO AO ROLAR A PÁGINA
+   Depois de rolar mais de 12px, o cabeçalho ganha fundo desfocado
+   e uma linha embaixo (classe "cabecalho-rolado").
+   -------------------------------------------------------------------------- */
+
+function atualizarCabecalho() {
+  cabecalho.classList.toggle('cabecalho-rolado', scrollY > 12);
+}
+
+addEventListener('scroll', atualizarCabecalho, { passive: true });
+atualizarCabecalho();   // roda uma vez ao abrir a página
+
+})();
+(function(){
+/* ==========================================================================
+   SG PET CARE - PÁGINA DE SERVIÇOS (servicos.js)
+   Controla os cartões de serviço que viram (frente e verso).
+   (O menu do celular fica no arquivo navbar.js)
+   Não usa bibliotecas externas.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   CARTÕES DE SERVIÇO QUE VIRAM
+   Cada cartão tem uma frente (nome e descrição) e um verso (preço e botão).
+   O cartão vira:
+   - ao clicar em "Saiba mais →" (e desvira em "Voltar")
+   - ao passar o mouse (apenas em computadores com mouse)
+   - a tecla Esc desvira o cartão
+   -------------------------------------------------------------------------- */
+
+// true se o aparelho usa mouse de verdade (e não toque na tela)
+const usaMouse = matchMedia('(hover: hover) and (pointer: fine)');
+
+// Repete o bloco abaixo para cada cartão da página
+document.querySelectorAll('.cartao-servico').forEach((cartao, indice) => {
+
+  // Partes do cartão
+  const frente = cartao.querySelector('.frente-servico');
+  const verso = cartao.querySelector('.verso-servico');
+  const detalhes = frente.querySelector('button');   // botão "Saiba mais →"
+  const voltar = verso.querySelector('button');      // botão "Voltar"
+
+  // Dá um id único ao verso (detalhes-servico-1, -2, -3...) para acessibilidade
+  verso.id = `detalhes-servico-${indice + 1}`;
+  detalhes.setAttribute('aria-controls', verso.id);
+
+  // Vira o cartão: aberto = true mostra o verso, false mostra a frente.
+  // moverFoco = true leva o foco do teclado para o botão da face visível.
+  function girar(aberto, moverFoco = false) {
+    cartao.dataset.virado = aberto;                  // o CSS usa isso para girar
+    frente.inert = aberto;                           // face escondida não recebe cliques/Tab
+    verso.inert = !aberto;
+    frente.setAttribute('aria-hidden', aberto);      // esconde a face invisível de leitores de tela
+    verso.setAttribute('aria-hidden', !aberto);
+    detalhes.setAttribute('aria-expanded', aberto);
+    if (moverFoco) (aberto ? voltar : detalhes).focus({ preventScroll: true });
+  }
+
+  // Cliques nos botões
+  detalhes.addEventListener('click', () => girar(true, true));
+  voltar.addEventListener('click', () => girar(false, true));
+
+  // Mouse entra no cartão: vira. Mouse sai: desvira.
+  cartao.addEventListener('mouseenter', () => { if (usaMouse.matches) girar(true); });
+  cartao.addEventListener('mouseleave', () => {
+    if (usaMouse.matches) girar(false, verso.contains(document.activeElement));
+  });
+
+  // Tecla Esc desvira o cartão
+  cartao.addEventListener('keydown', evento => {
+    if (evento.key === 'Escape') girar(false, true);
+  });
+
+  // Estado inicial: cartão mostrando a frente
+  girar(false);
+});
+
+})();
+
+/* CARROSSEL - NOSSOS CLIENTES */
+(function () {
+  const slides = document.getElementsByClassName('carousel-img');
+  const blurPrev = document.querySelector('.blur-prev');
+  const blurNext = document.querySelector('.blur-next');
+  let slideIndex = 0;
+
+  function showSlide(n) {
+    if (slides.length === 0) return;
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+      slides[i].style.opacity = 0;
+    }
+    slideIndex = (n + slides.length) % slides.length;
+    slides[slideIndex].style.display = 'block';
+    setTimeout(() => { slides[slideIndex].style.opacity = 1; }, 10);
+    const prev = (slideIndex - 1 + slides.length) % slides.length;
+    const next = (slideIndex + 1) % slides.length;
+    blurPrev.style.backgroundImage = `url('${slides[prev].src}')`;
+    blurNext.style.backgroundImage = `url('${slides[next].src}')`;
+  }
+
+  document.querySelector('.btn-prev').addEventListener('click', () => showSlide(slideIndex - 1));
+  document.querySelector('.btn-next').addEventListener('click', () => showSlide(slideIndex + 1));
+  showSlide(0);
+})();
+
+  </script>
 </body>
 </html>
