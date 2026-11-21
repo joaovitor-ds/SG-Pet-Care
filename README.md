@@ -45,7 +45,7 @@ O projeto foi desenvolvido com foco em uma navegação intuitiva, organização 
   <img src="img/servicos.jpeg" alt="Seção de serviços" width="85%">
   <p><strong>Serviços oferecidos</strong></p>
 
-  <img src="img/.png" alt="Carrossel de clientes" width="85%">
+  <img src="img/clientes.jpeg" alt="Carrossel de clientes" width="85%">
   <p><strong>Nossos clientes</strong></p>
 </div>
 
@@ -92,7 +92,7 @@ SG-Pet-Care/
 │
 └── img/
     ├── LogoSGPC.png
-    ├── previa.png
+    ├── previa.jpeg
     ├── servicos.jpeg
     ├── clientes.jpeg
     └── demais imagens do projeto
