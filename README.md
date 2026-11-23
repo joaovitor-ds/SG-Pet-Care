@@ -99,7 +99,7 @@ SG-Pet-Care/
 
 👨‍💻 Desenvolvedores
 
-Projeto acadêmico desenvolvido como parte do curso de Sistemas de Informação – Unibarretos.
+Projeto acadêmico desenvolvido por Carlos Eduardo(caduvalini2007-sketch), Isadora(isadora-rm), João Vitor(joaovitor-ds), Lizandra(lizandra2007) e Weverton(WevertonSantos219), como parte do curso de Sistemas de Informação – Unibarretos.
 
 <div align="center">
   **SG Pet Care 🐾**
